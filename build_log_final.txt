@@ -1,0 +1,36 @@
+
+> siaiein-website@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 4.0s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/14) ...
+  Generating static pages using 7 workers (3/14) 
+  Generating static pages using 7 workers (6/14) 
+  Generating static pages using 7 workers (10/14) 
+Γ£ô Generating static pages using 7 workers (14/14) in 944.7ms
+  Finalizing page optimization ...
+
+Route (app)
+Γöî Γùï /
+Γö£ Γùï /_not-found
+Γö£ Γùï /about-us
+Γö£ Γùï /agents
+Γö£ ╞Æ /agents/[agent]
+Γö£ Γùï /case-studies
+Γö£ Γùï /contact
+Γö£ Γùï /how-it-works
+Γö£ Γùï /industries
+Γö£ Γùï /platform
+Γö£ Γùï /pricing
+Γö£ Γùï /services
+Γöö Γùï /vision
+
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
