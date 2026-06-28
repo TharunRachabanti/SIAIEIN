@@ -15,10 +15,10 @@ export function ScrollReveal({
     className?: string;
 }) {
     const directions = {
-        up: { y: 40, x: 0 },
-        down: { y: -40, x: 0 },
-        left: { x: 40, y: 0 },
-        right: { x: -40, y: 0 },
+        up: { y: 30, x: 0 },
+        down: { y: -30, x: 0 },
+        left: { x: 30, y: 0 },
+        right: { x: -30, y: 0 },
         none: { x: 0, y: 0 },
     };
 
@@ -26,18 +26,21 @@ export function ScrollReveal({
         <motion.div
             initial={{
                 opacity: 0,
+                filter: "blur(10px)",
                 ...directions[direction]
             }}
             whileInView={{
                 opacity: 1,
+                filter: "blur(0px)",
                 x: 0,
                 y: 0
             }}
-            viewport={{ once: true, margin: "-10%" }}
+            viewport={{ once: true, margin: "-5%" }}
             transition={{
                 type: "spring",
-                damping: 20,
-                stiffness: 100,
+                damping: 25,
+                stiffness: 80,
+                mass: 1.2,
                 delay: delay,
             }}
             className={className}

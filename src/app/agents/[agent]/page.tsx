@@ -110,22 +110,22 @@ export default async function AgentPage({ params }: { params: Promise<{ agent: s
     return (
         <div className="flex flex-col min-h-screen w-full relative overflow-hidden pt-24">
             {/* Glow Backdrop */}
-            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-orange-500/10 blur-[120px] rounded-full pointer-events-none" />
 
             {/* Hero Section */}
             <ScrollReveal delay={0.1}>
                 <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold mb-6">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-sm font-semibold mb-6">
                         <Zap className="h-4 w-4" /> {data.label}
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight font-serif">
                         {data.title}
                     </h1>
                     <p className="text-lg md:text-xl text-gray-400 max-w-3xl mb-10 leading-relaxed text-balance">
                         {data.desc}
                     </p>
                     <div className="flex sm:flex-row flex-col gap-4">
-                        <Button size="lg" className="w-full sm:w-auto h-12 px-8 hover:scale-105 transition-transform shadow-[0_0_20px_rgba(6,182,212,0.3)]">Start Free Trial</Button>
+                        <Button variant="glowing" size="lg" className="w-full sm:w-auto">Start Free Trial</Button>
                         <Button size="lg" variant="outline" className="w-full sm:w-auto h-12 px-8 hover:bg-white/5 hover:scale-105 transition-all">View Interactive Demo</Button>
                     </div>
                 </section>
@@ -134,18 +134,18 @@ export default async function AgentPage({ params }: { params: Promise<{ agent: s
             {/* Problems Solved Section */}
             <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 w-full">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl font-bold text-white mb-12 text-center">Business Impact</h2>
+                    <h2 className="text-3xl font-bold text-white mb-12 text-center font-serif">Business Impact</h2>
                 </ScrollReveal>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {data.problems.map((prob, i) => (
                         <ScrollReveal key={i} delay={0.1 * i} direction="up">
-                            <Card className="bg-slate-900/50 border-white/5 hover:border-cyan-500/30 hover:bg-slate-900 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(6,182,212,0.1)] transition-all duration-300 group h-full">
+                            <Card className="bg-[#0a0604]/50 border-white/5 hover:border-orange-500/30 hover:bg-[#0a0604] hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(6,182,212,0.1)] transition-all duration-300 group h-full">
                                 <CardContent className="p-8 flex flex-col items-center text-center h-full">
-                                    <div className="w-16 h-16 rounded-2xl bg-slate-950 border border-white/10 flex items-center justify-center mb-6 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/10 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
-                                        <prob.icon className="h-8 w-8 text-cyan-400" />
+                                    <div className="w-16 h-16 rounded-2xl bg-slate-950 border border-white/10 flex items-center justify-center mb-6 group-hover:border-orange-500/50 group-hover:bg-orange-500/10 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
+                                        <prob.icon className="h-8 w-8 text-orange-500" />
                                     </div>
-                                    <h3 className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-2 group-hover:text-cyan-400 transition-colors">{prob.metric}</h3>
+                                    <h3 className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-2 group-hover:text-orange-500 transition-colors">{prob.metric}</h3>
                                     <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-cyan-200 transition-all">{prob.outcome}</h4>
                                     <p className="text-gray-400 group-hover:text-gray-300 transition-colors">{prob.text}</p>
                                 </CardContent>
@@ -158,17 +158,17 @@ export default async function AgentPage({ params }: { params: Promise<{ agent: s
             {/* How it Works Section */}
             <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                 <ScrollReveal delay={0.1}>
-                    <div className="bg-slate-900 border border-white/10 rounded-3xl p-8 md:p-16 hover:border-cyan-500/20 transition-colors duration-500 shadow-2xl">
-                        <h2 className="text-3xl font-bold text-white mb-16 text-center">How Deployment Works</h2>
+                    <div className="bg-[#0a0604] border border-white/10 rounded-3xl p-8 md:p-16 hover:border-orange-500/20 transition-colors duration-500 shadow-2xl">
+                        <h2 className="text-3xl font-bold text-white mb-16 text-center font-serif">How Deployment Works</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-                            <div className="hidden md:block absolute top-8 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-cyan-500/0 via-cyan-500/50 to-cyan-500/0" />
+                            <div className="hidden md:block absolute top-8 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-orange-500/0 via-orange-500/50 to-orange-500/0" />
 
                             {data.steps.map((step, i) => (
                                 <div key={i} className="relative z-10 flex flex-col items-center text-center group">
-                                    <div className="w-16 h-16 rounded-full bg-slate-950 border-2 border-cyan-500 flex items-center justify-center text-cyan-400 font-bold text-xl mb-6 shadow-[0_0_20px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-cyan-500 group-hover:text-slate-950 group-hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300">
+                                    <div className="w-16 h-16 rounded-full bg-slate-950 border-2 border-orange-500 flex items-center justify-center text-orange-500 font-bold text-xl mb-6 shadow-[0_0_20px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-slate-950 group-hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300">
                                         {i + 1}
                                     </div>
-                                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{step.title}</h4>
+                                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-orange-500 transition-colors">{step.title}</h4>
                                     <p className="text-sm text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">{step.desc}</p>
                                 </div>
                             ))}
@@ -180,14 +180,14 @@ export default async function AgentPage({ params }: { params: Promise<{ agent: s
             {/* Deep Capabilities Grid */}
             <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl font-bold text-white mb-10 text-center">Core Capabilities</h2>
+                    <h2 className="text-3xl font-bold text-white mb-10 text-center font-serif">Core Capabilities</h2>
                 </ScrollReveal>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {data.features.map((feat, i) => (
                         <ScrollReveal key={i} delay={0.1 * i} direction="right">
-                            <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-cyan-500/30 hover:bg-white/10 transition-all duration-300 group">
-                                <CheckCircle2 className="h-6 w-6 text-blue-500 shrink-0 group-hover:scale-110 group-hover:text-cyan-400 transition-all duration-300" />
+                            <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-orange-500/30 hover:bg-white/10 transition-all duration-300 group">
+                                <CheckCircle2 className="h-6 w-6 text-orange-500 shrink-0 group-hover:scale-110 group-hover:text-orange-500 transition-all duration-300" />
                                 <span className="text-gray-200 font-medium group-hover:text-white transition-colors">{feat}</span>
                             </div>
                         </ScrollReveal>
@@ -196,11 +196,11 @@ export default async function AgentPage({ params }: { params: Promise<{ agent: s
             </section>
 
             {/* Footer CTA */}
-            <section className="py-24 mt-10 px-4 text-center bg-gradient-to-t from-cyan-500/5 to-transparent border-t border-white/5">
+            <section className="py-24 mt-10 px-4 text-center bg-gradient-to-t from-orange-500/5 to-transparent border-t border-white/5">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Hire your {data.label.toLowerCase()} today.</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-serif">Hire your {data.label.toLowerCase()} today.</h2>
                     <p className="text-gray-400 mb-8 max-w-xl mx-auto">Requires zero coding experience. Connects to your existing tools in minutes.</p>
-                    <Button size="lg" className="h-12 px-10 text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(6,182,212,0.2)]">Deploy Agent</Button>
+                    <Button variant="glowing" size="lg" className="w-full sm:w-auto">Deploy Agent</Button>
                 </ScrollReveal>
             </section>
         </div>

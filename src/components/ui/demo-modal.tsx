@@ -125,9 +125,9 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
 
     function getStepIcon(type: DemoStep["type"]) {
         switch (type) {
-            case "success": return <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />;
-            case "processing": return <Loader2 className="w-4 h-4 text-cyan-400 shrink-0 animate-spin" />;
-            case "result": return <Zap className="w-4 h-4 text-amber-400 shrink-0" />;
+            case "success": return <CheckCircle2 className="w-4 h-4 text-rose-400 shrink-0" />;
+            case "processing": return <Loader2 className="w-4 h-4 text-orange-500 shrink-0 animate-spin" />;
+            case "result": return <Zap className="w-4 h-4 text-orange-500 shrink-0" />;
             case "warning": return <AlertCircle className="w-4 h-4 text-orange-400 shrink-0" />;
             case "tool": return <ArrowRight className="w-4 h-4 text-purple-400 shrink-0" />;
             default: return <Terminal className="w-4 h-4 text-gray-400 shrink-0" />;
@@ -137,8 +137,8 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
     function getStepColor(type: DemoStep["type"]) {
         switch (type) {
             case "success": return "text-emerald-300";
-            case "processing": return "text-cyan-300";
-            case "result": return "text-amber-300 font-semibold";
+            case "processing": return "text-orange-300";
+            case "result": return "text-orange-300 font-semibold";
             case "warning": return "text-orange-300";
             case "tool": return "text-purple-300";
             default: return "text-gray-300";
@@ -160,14 +160,14 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
 
                     {/* Modal */}
                     <motion.div
-                        className="relative w-full max-w-3xl bg-slate-900 border border-white/10 rounded-xl sm:rounded-2xl shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col max-h-[90vh]"
+                        className="relative w-full max-w-3xl bg-[#0a0604] border border-white/10 rounded-xl sm:rounded-2xl shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col max-h-[90vh]"
                         initial={{ scale: 0.95, y: 20 }}
                         animate={{ scale: 1, y: 0 }}
                         exit={{ scale: 0.95, y: 20 }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 bg-slate-800/50 shrink-0">
+                        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 bg-[#130a06]/50 shrink-0">
                             <div className="flex items-center gap-3">
                                 <div className="hidden sm:flex gap-1.5">
                                     <div className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer hover:bg-red-400" onClick={handleClose} />
@@ -182,6 +182,15 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                             <button onClick={handleClose} className="p-1 sm:p-1.5 hover:bg-white/10 rounded-lg transition-colors">
                                 <X className="w-5 h-5 text-gray-400" />
                             </button>
+                        </div>
+
+                        {/* Simulated Preview Banner */}
+                        <div className="bg-orange-500/10 border-b border-orange-500/20 px-4 py-2 sm:px-6 sm:py-3 shrink-0 flex items-start sm:items-center gap-3">
+                            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500 shrink-0 mt-0.5 sm:mt-0" />
+                            <p className="text-xs sm:text-sm text-orange-200/80 font-sans leading-relaxed">
+                                <strong>Note:</strong> This is a simulated preview of an agent execution environment. 
+                                <span className="block sm:inline sm:ml-1">Book a live demo to see this workflow process live data.</span>
+                            </p>
                         </div>
 
                         {/* Terminal Body */}
@@ -217,11 +226,11 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                 >
-                                    <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 animate-spin shrink-0" />
-                                    <span className="text-cyan-400/70 truncate">
+                                    <Loader2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-500 animate-spin shrink-0" />
+                                    <span className="text-orange-500/70 truncate">
                                         {config.steps[currentStep].text.length > 25 ? config.steps[currentStep].text.substring(0, 25) + "..." : config.steps[currentStep].text}
                                     </span>
-                                    <span className="animate-pulse text-cyan-400">▊</span>
+                                    <span className="animate-pulse text-orange-500">▊</span>
                                 </motion.div>
                             )}
 
@@ -233,7 +242,7 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.3 }}
                                 >
-                                    <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                                    <div className="flex items-center gap-2 text-rose-400 font-bold">
                                         <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5" />
                                         <span>Demo Complete</span>
                                     </div>
@@ -242,7 +251,7 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                         </div>
 
                         {/* Progress Bar */}
-                        <div className="h-1 bg-slate-800 shrink-0">
+                        <div className="h-1 bg-[#130a06] shrink-0">
                             <motion.div
                                 className={`h-full ${config.accentBg}`}
                                 initial={{ width: 0 }}
@@ -252,7 +261,7 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                         </div>
 
                         {/* Footer Stats */}
-                        <div className="px-4 sm:px-6 py-3 sm:py-4 bg-slate-800/80 border-t border-white/5 shrink-0 flex flex-col sm:block gap-3">
+                        <div className="px-4 sm:px-6 py-3 sm:py-4 bg-[#130a06]/80 border-t border-white/5 shrink-0 flex flex-col sm:block gap-3">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                 {/* Tools */}
                                 <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap order-2 sm:order-1">
@@ -261,7 +270,7 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                                         <span
                                             key={i}
                                             className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] sm:text-xs font-mono font-medium transition-all duration-300 ${activeTools.has(tool)
-                                                ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/30"
+                                                ? "bg-orange-500/20 text-orange-300 border border-orange-500/30"
                                                 : "bg-white/5 text-gray-500 border border-white/5"
                                                 }`}
                                         >
@@ -282,8 +291,8 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                                         <span className="text-white ml-1">{actionCount}</span>
                                     </div>
                                     <div className="flex items-center gap-1.5 ml-auto sm:ml-0">
-                                        <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${isRunning ? "bg-emerald-400 animate-pulse" : progress === 100 ? "bg-emerald-400" : "bg-gray-600"}`} />
-                                        <span className={isRunning ? "text-emerald-400" : "text-gray-400"}>
+                                        <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${isRunning ? "bg-rose-400 animate-pulse" : progress === 100 ? "bg-rose-400" : "bg-gray-600"}`} />
+                                        <span className={isRunning ? "text-rose-400" : "text-gray-400"}>
                                             {isRunning ? "Running" : progress === 100 ? "Done" : "Idle"}
                                         </span>
                                     </div>

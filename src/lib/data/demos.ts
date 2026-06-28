@@ -129,8 +129,8 @@ export const agentDemos: Record<string, DemoConfig> = {
     "data-analyst": {
         id: "data-analyst",
         title: "Data Analyst Agent",
-        color: "text-amber-400",
-        accentBg: "bg-amber-500",
+        color: "text-orange-500",
+        accentBg: "bg-orange-500",
         tools: ["PostgreSQL", "Python", "Dashboard", "Slack"],
         steps: [
             { text: "Initializing Data Analyst Agent...", type: "info", delay: 800 },
@@ -217,8 +217,8 @@ export const serviceDemos: Record<string, DemoConfig> = {
     "ai-consulting-strategy": {
         id: "ai-consulting-strategy",
         title: "AI Consulting & Strategy",
-        color: "text-amber-400",
-        accentBg: "bg-amber-500",
+        color: "text-orange-500",
+        accentBg: "bg-orange-500",
         tools: ["Assessment Tool", "ROI Calculator", "Roadmap Builder"],
         steps: [
             { text: "Initializing AI Readiness Assessment...", type: "info", delay: 800 },

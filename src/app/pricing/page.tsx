@@ -6,6 +6,7 @@ import { Check, ChevronDown, Rocket, ShieldCheck, Workflow, Target, Zap, PhoneCa
 import * as React from "react";
 import { useState } from "react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { CalendlyButton } from "@/components/ui/calendly-button";
 
 export default function PricingPage() {
     const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -24,15 +25,16 @@ export default function PricingPage() {
             {/* Hero Section */}
             <ScrollReveal delay={0.1} direction="up">
                 <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col items-center text-center">
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
-                        Custom Pricing Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Your Business</span>
+                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6 font-serif">
+                        Custom Pricing Built for <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-500">Your Business</span>
                     </h1>
                     <p className="text-lg md:text-xl text-gray-400 mb-10 text-balance">
                         We don't believe in one-size-fits-all pricing. Every business is unique, so we create a personalized solution that matches your specific needs, budget, and goals.
                     </p>
-                    <Button size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform">
-                        Schedule Free Consultation
-                    </Button>
+                    <CalendlyButton 
+                        text="Schedule Free Consultation" 
+                        className="w-full sm:w-auto h-12 text-lg"
+                    />
                 </section>
             </ScrollReveal>
 
@@ -40,7 +42,7 @@ export default function PricingPage() {
             <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 w-full">
                 <ScrollReveal delay={0.1}>
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-4">Why Custom Pricing?</h2>
+                        <h2 className="text-3xl font-bold text-white mb-4 font-serif">Why Custom Pricing?</h2>
                     </div>
                 </ScrollReveal>
 
@@ -54,11 +56,11 @@ export default function PricingPage() {
                         { title: "Guaranteed ROI", icon: Rocket, desc: "Priced carefully to ensure automation pays for itself quickly." }
                     ].map((item, i) => (
                         <ScrollReveal key={i} delay={0.1 * i} direction="up">
-                            <div className="bg-slate-800/50 border border-slate-800 p-8 rounded-2xl hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-300 group hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] h-full">
-                                <div className="p-3 bg-cyan-500/10 w-max rounded-xl mb-4 group-hover:bg-cyan-500/20 group-hover:scale-110 transition-all duration-300">
-                                    <item.icon className="h-6 w-6 text-cyan-400" />
+                            <div className="bg-[#130a06]/50 border border-[#130a06] p-8 rounded-2xl hover:border-orange-500/50 hover:bg-[#130a06] transition-all duration-300 group hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(6,182,212,0.15)] h-full">
+                                <div className="p-3 bg-orange-500/10 w-max rounded-xl mb-4 group-hover:bg-orange-500/20 group-hover:scale-110 transition-all duration-300">
+                                    <item.icon className="h-6 w-6 text-orange-500" />
                                 </div>
-                                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors">{item.title}</h3>
+                                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-orange-500 transition-colors">{item.title}</h3>
                                 <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors">{item.desc}</p>
                             </div>
                         </ScrollReveal>
@@ -69,11 +71,11 @@ export default function PricingPage() {
             {/* Our Process - 4 Steps */}
             <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center border-t border-white/5">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-16">Our Process</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-16 font-serif">Our Process</h2>
                 </ScrollReveal>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 relative">
-                    <div className="hidden lg:block absolute top-[20px] left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-cyan-500/0 via-cyan-500/50 to-cyan-500/0" />
+                    <div className="hidden lg:block absolute top-[20px] left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-orange-500/0 via-orange-500/50 to-orange-500/0" />
 
                     {[
                         { num: "01", title: "Discovery Call (30 min)", desc: "We understand your business challenges, goals, and current processes. No pressure, just a conversation." },
@@ -82,11 +84,11 @@ export default function PricingPage() {
                         { num: "04", title: "Implementation", desc: "We deploy your agents, train your team, and ensure everything runs smoothly. Start seeing results immediately." }
                     ].map((step, i) => (
                         <ScrollReveal key={i} delay={0.1 * i} direction="up">
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 relative flex flex-col items-center group hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 h-full mt-6 lg:mt-0">
-                                <div className="absolute -top-6 bg-slate-800 border-2 border-cyan-500 text-cyan-400 font-bold text-xl h-12 w-12 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all duration-300">
+                            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 relative flex flex-col items-center group hover:bg-white/10 hover:border-orange-500/30 transition-all duration-300 h-full mt-6 lg:mt-0">
+                                <div className="absolute -top-6 bg-[#130a06] border-2 border-orange-500 text-orange-500 font-bold text-xl h-12 w-12 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all duration-300">
                                     {step.num}
                                 </div>
-                                <h3 className="text-xl font-bold text-white mt-4 mb-3 group-hover:text-cyan-400 transition-colors">{step.title}</h3>
+                                <h3 className="text-xl font-bold text-white mt-4 mb-3 group-hover:text-orange-500 transition-colors">{step.title}</h3>
                                 <p className="text-sm text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">{step.desc}</p>
                             </div>
                         </ScrollReveal>
@@ -97,7 +99,7 @@ export default function PricingPage() {
             {/* What We Include */}
             <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 w-full">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl font-bold text-white mb-12 text-center">What We Include</h2>
+                    <h2 className="text-3xl font-bold text-white mb-12 text-center font-serif">What We Include</h2>
                 </ScrollReveal>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -108,9 +110,9 @@ export default function PricingPage() {
                         { title: "Workforce Management", items: ["Capacity tracking", "Burnout prevention metrics", "Schedule optimization"] }
                     ].map((feature, i) => (
                         <ScrollReveal key={i} delay={0.1 * i} direction={i % 2 === 0 ? "right" : "left"}>
-                            <Card className="bg-slate-800/40 border-slate-800 hover:border-cyan-500/30 transition-colors duration-300 overflow-hidden group h-full">
-                                <CardHeader className="bg-black/20 border-b border-white/5 group-hover:bg-cyan-500/5 transition-colors">
-                                    <CardTitle className="text-xl text-cyan-400 flex items-center gap-2">
+                            <Card className="bg-[#130a06]/40 border-[#130a06] hover:border-orange-500/30 transition-colors duration-300 overflow-hidden group h-full">
+                                <CardHeader className="bg-black/20 border-b border-white/5 group-hover:bg-orange-500/5 transition-colors">
+                                    <CardTitle className="text-xl text-orange-500 flex items-center gap-2">
                                         <Zap className="h-5 w-5 opacity-0 group-hover:opacity-100 -ml-7 group-hover:ml-0 transition-all duration-300" />
                                         {feature.title}
                                     </CardTitle>
@@ -119,8 +121,8 @@ export default function PricingPage() {
                                     <ul className="space-y-4">
                                         {feature.items.map((item, j) => (
                                             <li key={j} className="flex items-center gap-3 text-gray-300 group-hover:text-white transition-colors">
-                                                <div className="p-1 rounded-full bg-blue-500/10 group-hover:bg-cyan-500/20 transition-colors">
-                                                    <Check className="h-4 w-4 text-blue-500 group-hover:text-cyan-400 transition-colors shrink-0" />
+                                                <div className="p-1 rounded-full bg-orange-500/10 group-hover:bg-orange-500/20 transition-colors">
+                                                    <Check className="h-4 w-4 text-orange-500 group-hover:text-orange-500 transition-colors shrink-0" />
                                                 </div>
                                                 {item}
                                             </li>
@@ -136,19 +138,19 @@ export default function PricingPage() {
             {/* FAQ */}
             <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto border-t border-white/5 w-full">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl font-bold text-white mb-10 text-center">Frequently Asked Questions</h2>
+                    <h2 className="text-3xl font-bold text-white mb-10 text-center font-serif">Frequently Asked Questions</h2>
                 </ScrollReveal>
 
                 <div className="space-y-4">
                     {faqs.map((faq, i) => (
                         <ScrollReveal key={i} delay={0.1 * i} direction="up">
                             <div
-                                className="bg-slate-800/50 border border-white/10 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer hover:border-cyan-500/30 hover:bg-slate-800/80"
+                                className="bg-[#130a06]/50 border border-white/10 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer hover:border-orange-500/30 hover:bg-[#130a06]/80"
                                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
                             >
-                                <div className="p-6 flex justify-between items-center text-white hover:text-cyan-400 transition-colors">
+                                <div className="p-6 flex justify-between items-center text-white hover:text-orange-500 transition-colors">
                                     <h4 className="font-semibold">{faq.q}</h4>
-                                    <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${openFaq === i ? 'rotate-180 text-cyan-400' : ''}`} />
+                                    <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${openFaq === i ? 'rotate-180 text-orange-500' : ''}`} />
                                 </div>
                                 <div
                                     className={`px-6 overflow-hidden transition-all duration-300 ${openFaq === i ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
@@ -164,9 +166,12 @@ export default function PricingPage() {
             {/* Bottom CTA */}
             <section className="py-20 px-4 text-center bg-gradient-to-t from-cyan-900/20 to-transparent">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">Ready to Transform?</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 font-serif">Ready to Transform?</h2>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <Button size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform">Schedule Consultation</Button>
+                        <CalendlyButton 
+                            text="Schedule Consultation" 
+                            className="w-full sm:w-auto h-12 text-lg"
+                        />
                         <Button size="lg" variant="outline" className="w-full sm:w-auto hover:scale-105 transition-transform">View Case Studies</Button>
                     </div>
                 </ScrollReveal>

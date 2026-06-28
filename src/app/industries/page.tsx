@@ -4,6 +4,7 @@ import * as React from "react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { MidPageCTA } from "@/components/ui/mid-page-cta";
 
 export default function IndustriesPage() {
     return (
@@ -14,9 +15,9 @@ export default function IndustriesPage() {
             {/* Hero Section */}
             <ScrollReveal delay={0.1}>
                 <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center z-10">
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6 font-serif">
                         Built for Your <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Industry</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-500">Industry</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-400 max-w-3xl text-balance leading-relaxed">
                         We don't build generic AI. We build deep solutions for specific industries.
@@ -33,9 +34,9 @@ export default function IndustriesPage() {
                             slug: "ecommerce",
                             title: "E-commerce",
                             icon: ShoppingBag,
-                            color: "text-cyan-400",
-                            bg: "bg-cyan-500/10",
-                            border: "hover:border-cyan-500/50",
+                            color: "text-orange-500",
+                            bg: "bg-orange-500/10",
+                            border: "hover:border-orange-500/50",
                             list: ["AI order tracking and support", "Personalized product recommendation agents", "Inventory demand forecasting", "Customer returns automation", "Review analysis and response"]
                         },
                         {
@@ -43,9 +44,9 @@ export default function IndustriesPage() {
                             slug: "saas-technology",
                             title: "SaaS & Technology",
                             icon: Rocket,
-                            color: "text-blue-400",
-                            bg: "bg-blue-500/10",
-                            border: "hover:border-blue-500/50",
+                            color: "text-orange-500",
+                            bg: "bg-orange-500/10",
+                            border: "hover:border-orange-500/50",
                             list: ["User onboarding automation", "Customer success and retention agents", "Support ticket resolution", "Churn prediction and response workflows", "Product feedback analysis"]
                         },
                         {
@@ -53,7 +54,7 @@ export default function IndustriesPage() {
                             slug: "healthcare",
                             title: "Healthcare",
                             icon: Activity,
-                            color: "text-emerald-400",
+                            color: "text-rose-400",
                             bg: "bg-emerald-500/10",
                             border: "hover:border-emerald-500/50",
                             list: ["Appointment scheduling agents", "Patient communication automation", "Medical document processing", "Insurance claim pre-processing", "Staff coordination workflows"]
@@ -63,9 +64,9 @@ export default function IndustriesPage() {
                             slug: "finance-accounting",
                             title: "Finance & Accounting",
                             icon: Landmark,
-                            color: "text-amber-400",
-                            bg: "bg-amber-500/10",
-                            border: "hover:border-amber-500/50",
+                            color: "text-orange-500",
+                            bg: "bg-orange-500/10",
+                            border: "hover:border-orange-500/50",
                             list: ["Transaction monitoring agents", "Fraud detection workflows", "Automated financial reporting", "Expense audit agents", "Regulatory compliance assistance"]
                         },
                         {
@@ -110,7 +111,7 @@ export default function IndustriesPage() {
                         }
                     ].map((industry, i) => (
                         <ScrollReveal key={i} delay={0.05 * i} direction="up">
-                            <Card id={industry.id} className={`bg-slate-800/40 border-white/5 hover:-translate-y-2 h-full transition-all duration-300 group ${industry.border} hover:bg-slate-800 shadow-none hover:shadow-2xl scroll-mt-32`}>
+                            <Card id={industry.id} className={`bg-[#130a06]/40 border-white/5 hover:-translate-y-2 h-full transition-all duration-300 group ${industry.border} hover:bg-[#130a06] shadow-none hover:shadow-2xl scroll-mt-32`}>
                                 <CardContent className="p-8">
                                     <div className="flex items-center gap-4 mb-8">
                                         <div className={`p-4 rounded-xl ${industry.bg} border border-[currentcolor]/20 group-hover:scale-110 transition-transform duration-300`}>
@@ -130,14 +131,16 @@ export default function IndustriesPage() {
                 </div>
             </section>
 
+            <MidPageCTA />
+
             {/* CTA */}
             <section className="py-24 px-4 text-center mt-12 bg-gradient-to-t from-cyan-900/20 to-transparent border-t border-white/5 relative z-10">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-4xl font-bold text-white mb-8">Don't see your industry?</h2>
+                    <h2 className="text-4xl font-bold text-white mb-8 font-serif">Don't see your industry?</h2>
                     <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
                         We build custom Agentic architectures for highly specialized domains. Let's discuss your specific operational challenges.
                     </p>
-                    <Button size="lg" className="h-16 px-10 text-xl font-bold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(6,182,212,0.3)]">
+                    <Button variant="glowing" size="lg" className="w-full sm:w-auto">
                         Discuss Custom Architecture
                     </Button>
                 </ScrollReveal>

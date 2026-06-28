@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0f172a;
-  /* Lighter dark mode (slate-900) instead of pure black */
+  --color-background: #0a0604;
+  /* Deep warm dark background */
   --color-foreground: #ffffff;
-  --color-primary: #06b6d4;
-  --color-secondary: #3b82f6;
+  --color-primary: #f97316;
+  --color-secondary: #fbbf24;
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-inter);
 }
 
 @layer base {

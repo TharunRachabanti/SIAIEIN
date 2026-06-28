@@ -6,7 +6,7 @@ import { useRef } from "react";
 export function ParallaxBackground({
     imageUrl,
     className = "",
-    overlayClassName = "bg-slate-800/80 pointer-events-none",
+    overlayClassName = "bg-[#130a06]/80 pointer-events-none",
 }: {
     imageUrl: string;
     className?: string;

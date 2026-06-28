@@ -71,8 +71,8 @@ export const industriesData: Industry[] = [
             "Regulatory compliance assistance"
         ],
         iconName: "Landmark",
-        colorClass: "text-amber-400",
-        bgClass: "bg-amber-500/10"
+        colorClass: "text-orange-500",
+        bgClass: "bg-orange-500/10"
     },
     {
         slug: "manufacturing",

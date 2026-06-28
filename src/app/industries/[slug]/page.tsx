@@ -6,10 +6,10 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const iconMap: Record<string, React.ReactNode> = {
-    ShoppingBag: <ShoppingBag className="w-12 h-12 text-cyan-400" />,
-    Rocket: <Rocket className="w-12 h-12 text-blue-400" />,
-    Activity: <Activity className="w-12 h-12 text-emerald-400" />,
-    Landmark: <Landmark className="w-12 h-12 text-amber-400" />,
+    ShoppingBag: <ShoppingBag className="w-12 h-12 text-orange-500" />,
+    Rocket: <Rocket className="w-12 h-12 text-orange-500" />,
+    Activity: <Activity className="w-12 h-12 text-rose-400" />,
+    Landmark: <Landmark className="w-12 h-12 text-orange-500" />,
     Factory: <Factory className="w-12 h-12 text-purple-400" />,
     Store: <Store className="w-12 h-12 text-rose-400" />,
     Users: <Users className="w-12 h-12 text-indigo-400" />,
@@ -55,7 +55,7 @@ export default async function IndustryPage({ params }: PageProps) {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Link href="/contact">
-                            <Button size="lg" className="h-14 px-8 text-lg font-bold shadow-lg hover:scale-105 transition-transform bg-white hover:bg-gray-200 text-slate-900 w-full sm:w-auto">
+                            <Button variant="glowing" size="lg" className="w-full sm:w-auto">
                                 Deploy Industry Agents
                             </Button>
                         </Link>
@@ -69,7 +69,7 @@ export default async function IndustryPage({ params }: PageProps) {
 
                     <div className="space-y-8">
                         <ScrollReveal delay={0.2} direction="up">
-                            <h2 className="text-3xl font-bold text-white">Transforming Operational Efficiency</h2>
+                            <h2 className="text-3xl font-bold text-white font-serif">Transforming Operational Efficiency</h2>
                         </ScrollReveal>
                         <ScrollReveal delay={0.3} direction="up">
                             <p className="text-lg text-gray-400 leading-relaxed">
@@ -79,12 +79,12 @@ export default async function IndustryPage({ params }: PageProps) {
 
                         <ScrollReveal delay={0.4} direction="up">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
-                                <div className="p-6 bg-slate-800/40 border border-white/5 rounded-xl">
-                                    <div className="text-4xl font-black text-white mb-2">3x</div>
+                                <div className="p-6 bg-[#130a06]/40 border border-white/5 rounded-xl">
+                                    <div className="text-4xl font-black text-white mb-2 font-serif">3x</div>
                                     <div className="text-gray-400 text-sm uppercase tracking-wider font-semibold">Faster Execution</div>
                                 </div>
-                                <div className="p-6 bg-slate-800/40 border border-white/5 rounded-xl">
-                                    <div className="text-4xl font-black text-white mb-2">-40%</div>
+                                <div className="p-6 bg-[#130a06]/40 border border-white/5 rounded-xl">
+                                    <div className="text-4xl font-black text-white mb-2 font-serif">-40%</div>
                                     <div className="text-gray-400 text-sm uppercase tracking-wider font-semibold">OpEx Reduction</div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@ export default async function IndustryPage({ params }: PageProps) {
                     </div>
 
                     <ScrollReveal delay={0.5} direction="left">
-                        <div className={`bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden`}>
+                        <div className={`bg-gradient-to-br from-[#130a06] to-[#0a0604] border border-white/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden`}>
                             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px]" />
                             <h3 className="text-2xl font-bold text-white mb-8 relative z-10">Automation Capabilities</h3>
                             <ul className="space-y-6 relative z-10">

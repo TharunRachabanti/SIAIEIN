@@ -13,9 +13,9 @@ const agents = [
         title: "Sales Outreach Agent",
         shortDesc: "Automates your entire top-of-funnel sales process.",
         icon: TrendingUp,
-        color: "text-blue-400",
-        bg: "bg-blue-500/10",
-        border: "hover:border-blue-500/50",
+        color: "text-orange-500",
+        bg: "bg-orange-500/10",
+        border: "hover:border-orange-500/50",
         bgImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop",
         list: ["Identify and qualify leads", "Write personalized outreach emails", "Send follow-up sequences", "Track responses and engagement", "Book meetings automatically", "Update CRM records"],
         demoId: "sales-outreach"
@@ -24,9 +24,9 @@ const agents = [
         title: "Customer Support Agent",
         shortDesc: "24/7 intelligent support that resolves issues without human involvement.",
         icon: MessageSquare,
-        color: "text-cyan-400",
-        bg: "bg-cyan-500/10",
-        border: "hover:border-cyan-500/50",
+        color: "text-orange-500",
+        bg: "bg-orange-500/10",
+        border: "hover:border-orange-500/50",
         bgImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop",
         list: ["Answer FAQs from your knowledge base", "Handle refund and return requests", "Escalate complex issues to humans", "Log every interaction", "Learn from past conversations"],
         demoId: "customer-support"
@@ -57,7 +57,7 @@ const agents = [
         title: "Finance & Accounting Agent",
         shortDesc: "Automates financial monitoring and reporting.",
         icon: DollarSign,
-        color: "text-emerald-400",
+        color: "text-rose-400",
         bg: "bg-emerald-500/10",
         border: "hover:border-emerald-500/50",
         bgImage: "https://images.unsplash.com/photo-1586528116311-ad8ed7a6a4c2?q=80&w=800&auto=format&fit=crop",
@@ -79,9 +79,9 @@ const agents = [
         title: "Data Analyst Agent",
         shortDesc: "Transforms raw data into actionable business intelligence.",
         icon: BarChart3,
-        color: "text-amber-400",
-        bg: "bg-amber-500/10",
-        border: "hover:border-amber-500/50",
+        color: "text-orange-500",
+        bg: "bg-orange-500/10",
+        border: "hover:border-orange-500/50",
         bgImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
         list: ["Connect to databases and spreadsheets", "Run analysis automatically", "Generate dashboards and visualizations", "Summarize key findings", "Alert teams to important changes"],
         demoId: "data-analyst"
@@ -99,12 +99,12 @@ export default function AgentsPage() {
             {/* Hero Section */}
             <ScrollReveal delay={0.1}>
                 <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center z-10">
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6 font-serif">
                         Our AI <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-500">Agents</span>
                     </h1>
                     <div className="flex flex-wrap justify-center gap-4 mt-8">
-                        <div className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-sm font-medium text-emerald-400">
-                            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <div className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-sm font-medium text-rose-400">
+                            <div className="w-2 h-2 rounded-full bg-rose-400 animate-pulse" />
                             Enterprise Grade Security
                         </div>
                         <div className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-sm font-medium text-indigo-400">
@@ -120,7 +120,7 @@ export default function AgentsPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     {agents.map((agent, i) => (
                         <ScrollReveal key={i} delay={0.05 * i} direction="up" className={i === 6 ? "lg:col-span-2 lg:mx-auto lg:w-1/2" : ""}>
-                            <Card className={`bg-gradient-to-br from-slate-800/60 to-slate-800/80 border border-white/10 hover:-translate-y-2 h-full transition-all duration-300 group ${agent.border} shadow-xl overflow-hidden relative`}>
+                            <Card className={`bg-gradient-to-br from-[#130a06]/60 to-[#130a06]/80 border border-white/10 hover:-translate-y-2 h-full transition-all duration-300 group ${agent.border} shadow-xl overflow-hidden relative`}>
                                 <div
                                     className="absolute inset-0 z-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 bg-cover bg-center mix-blend-overlay pointer-events-none"
                                     style={{ backgroundImage: `url('${agent.bgImage}')` }}
@@ -134,7 +134,7 @@ export default function AgentsPage() {
                                             <agent.icon className={`w-10 h-10 ${agent.color}`} />
                                         </div>
                                         <div>
-                                            <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-gray-200 transition-colors uppercase tracking-tight">{agent.title}</h3>
+                                            <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-gray-200 transition-colors uppercase tracking-tight font-serif">{agent.title}</h3>
                                             <p className="text-lg text-gray-400 font-medium leading-relaxed">{agent.shortDesc}</p>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@ export default function AgentsPage() {
                                     {/* Demo Button */}
                                     <Button
                                         variant="outline"
-                                        className={`w-full border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10 text-gray-300 hover:text-cyan-400 transition-all gap-2 font-semibold`}
+                                        className={`w-full border-white/10 hover:border-orange-500/50 hover:bg-orange-500/10 text-gray-300 hover:text-orange-500 transition-all gap-2 font-semibold`}
                                         onClick={() => setActiveDemo(agent.demoId)}
                                     >
                                         <PlayCircle className="w-4 h-4" />
@@ -168,10 +168,10 @@ export default function AgentsPage() {
             </section>
 
             {/* CTA */}
-            <section className="py-24 px-4 text-center mt-12 bg-slate-800 border-t border-white/5 relative z-10">
+            <section className="py-24 px-4 text-center mt-12 bg-[#130a06] border-t border-white/5 relative z-10">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-4xl font-bold text-white mb-8">Deploy your first agent this week.</h2>
-                    <Button size="lg" className="h-16 px-10 text-xl font-bold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(168,85,247,0.3)] bg-purple-600 hover:bg-purple-500 text-white">
+                    <h2 className="text-4xl font-bold text-white mb-8 font-serif">Deploy your first agent this week.</h2>
+                    <Button variant="glowing" size="lg" className="w-full sm:w-auto">
                         Get Free Automation Audit
                     </Button>
                 </ScrollReveal>

@@ -8,10 +8,10 @@ import { ServiceDemoButton } from "@/components/ui/service-demo-button";
 import { serviceDemos } from "@/lib/data/demos";
 
 const iconMap: Record<string, React.ReactNode> = {
-    Network: <Network className="w-12 h-12 text-blue-400" />,
-    Bot: <Bot className="w-12 h-12 text-cyan-400" />,
-    Code: <Code className="w-12 h-12 text-emerald-400" />,
-    Search: <Search className="w-12 h-12 text-amber-400" />,
+    Network: <Network className="w-12 h-12 text-orange-500" />,
+    Bot: <Bot className="w-12 h-12 text-orange-500" />,
+    Code: <Code className="w-12 h-12 text-rose-400" />,
+    Search: <Search className="w-12 h-12 text-orange-500" />,
     Database: <Database className="w-12 h-12 text-purple-400" />,
 };
 
@@ -44,10 +44,10 @@ export default async function ServicePage({ params }: PageProps) {
             {/* Hero Section */}
             <ScrollReveal delay={0.1}>
                 <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center z-10">
-                    <div className="mb-8 p-6 bg-slate-800/50 border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(6,182,212,0.15)] inline-block">
-                        {iconMap[service.iconName] || <Bot className="w-12 h-12 text-cyan-400" />}
+                    <div className="mb-8 p-6 bg-[#130a06]/50 border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(6,182,212,0.15)] inline-block">
+                        {iconMap[service.iconName] || <Bot className="w-12 h-12 text-orange-500" />}
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-6 uppercase">
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-6 uppercase font-serif">
                         {service.title}
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-300 max-w-3xl text-balance leading-relaxed mb-10">
@@ -55,7 +55,7 @@ export default async function ServicePage({ params }: PageProps) {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                         <Link href="/contact">
-                            <Button size="lg" className="h-14 px-8 text-lg font-bold shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:scale-105 transition-transform bg-cyan-500 hover:bg-cyan-400 text-slate-900 w-full sm:w-auto">
+                            <Button variant="glowing" size="lg" className="w-full sm:w-auto">
                                 Discuss Your Project
                             </Button>
                         </Link>
@@ -74,7 +74,7 @@ export default async function ServicePage({ params }: PageProps) {
                     <div className="space-y-12">
                         <ScrollReveal delay={0.2} direction="up">
                             <div>
-                                <h2 className="text-3xl font-bold text-white mb-6">Overview</h2>
+                                <h2 className="text-3xl font-bold text-white mb-6 font-serif">Overview</h2>
                                 <p className="text-lg text-gray-400 leading-relaxed">
                                     {service.longDescription}
                                 </p>
@@ -82,12 +82,12 @@ export default async function ServicePage({ params }: PageProps) {
                         </ScrollReveal>
 
                         <ScrollReveal delay={0.3} direction="up">
-                            <div className="bg-slate-800/40 border border-white/5 rounded-2xl p-8">
+                            <div className="bg-[#130a06]/40 border border-white/5 rounded-2xl p-8">
                                 <h3 className="text-2xl font-bold text-white mb-6">Core Capabilities</h3>
                                 <ul className="space-y-4">
                                     {service.features.map((feature, i) => (
                                         <li key={i} className="flex items-start gap-4">
-                                            <CheckCircle2 className="w-6 h-6 text-cyan-400 shrink-0 mt-0.5" />
+                                            <CheckCircle2 className="w-6 h-6 text-orange-500 shrink-0 mt-0.5" />
                                             <span className="text-gray-300 text-lg">{feature}</span>
                                         </li>
                                     ))}
@@ -100,11 +100,11 @@ export default async function ServicePage({ params }: PageProps) {
                     <div className="space-y-12">
                         <ScrollReveal delay={0.4} direction="up">
                             <div>
-                                <h2 className="text-3xl font-bold text-white mb-6">Enterprise Use Cases</h2>
+                                <h2 className="text-3xl font-bold text-white mb-6 font-serif">Enterprise Use Cases</h2>
                                 <div className="space-y-6">
                                     {service.useCases.map((useCase, i) => (
-                                        <div key={i} className="group relative bg-slate-800/30 border border-white/5 hover:border-cyan-500/30 p-6 rounded-xl transition-all duration-300 hover:bg-slate-800">
-                                            <ArrowRight className="absolute top-6 right-6 w-5 h-5 text-gray-600 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                                        <div key={i} className="group relative bg-[#130a06]/30 border border-white/5 hover:border-orange-500/30 p-6 rounded-xl transition-all duration-300 hover:bg-[#130a06]">
+                                            <ArrowRight className="absolute top-6 right-6 w-5 h-5 text-gray-600 group-hover:text-orange-500 group-hover:translate-x-1 transition-all" />
                                             <p className="text-gray-300 pr-8">{useCase}</p>
                                         </div>
                                     ))}

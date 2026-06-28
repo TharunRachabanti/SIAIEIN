@@ -17,7 +17,7 @@ export function ServiceDemoButton({ config }: ServiceDemoButtonProps) {
             <Button
                 size="lg"
                 variant="outline"
-                className="h-14 px-8 text-lg font-bold border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-400 transition-colors w-full sm:w-auto gap-2"
+                className="h-14 px-8 text-lg font-bold border-emerald-500/50 text-rose-400 hover:bg-emerald-500/10 hover:border-rose-400 transition-colors w-full sm:w-auto gap-2"
                 onClick={() => setIsOpen(true)}
             >
                 <PlayCircle className="w-5 h-5" />

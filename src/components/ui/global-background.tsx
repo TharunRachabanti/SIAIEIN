@@ -13,46 +13,48 @@ export function GlobalBackground() {
     if (!mounted) return null;
 
     return (
-        <div className="fixed inset-0 z-[-50] overflow-hidden pointer-events-none">
+        <div className="fixed inset-0 z-[-50] overflow-hidden pointer-events-none perspective-[1000px]">
             {/* Background Base */}
-            <div className="absolute inset-0 bg-slate-800" />
+            <div className="absolute inset-0 bg-[#0a0604]" />
 
-            {/* Soft Ambient Orbs */}
+            {/* Soft Ambient Orbs - Slowed down and softened */}
             <motion.div
                 animate={{
-                    scale: [1, 1.25, 1],
-                    opacity: [0.4, 0.6, 0.4],
-                    x: ["0%", "5%", "0%"],
-                    y: ["0%", "5%", "0%"],
+                    scale: [1, 1.1, 1],
+                    opacity: [0.15, 0.25, 0.15],
+                    x: ["0%", "2%", "0%"],
                 }}
                 transition={{
-                    duration: 15,
+                    duration: 25,
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vh] bg-blue-600/20 blur-[120px] rounded-full"
+                className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vh] bg-orange-600/30 blur-[150px] rounded-full"
             />
             <motion.div
                 animate={{
-                    scale: [1, 1.35, 1],
-                    opacity: [0.35, 0.55, 0.35],
-                    x: ["0%", "-5%", "0%"],
-                    y: ["0%", "-5%", "0%"],
+                    scale: [1, 1.15, 1],
+                    opacity: [0.1, 0.2, 0.1],
+                    y: ["0%", "-3%", "0%"],
                 }}
                 transition={{
-                    duration: 20,
+                    duration: 30,
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vh] bg-cyan-500/30 blur-[150px] rounded-full"
+                className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vh] bg-orange-500/20 blur-[180px] rounded-full"
             />
 
-            {/* Grid Overlay */}
+            {/* Subtle 3D Perspective Grid */}
             <div
-                className="absolute inset-0 opacity-[0.03]"
+                className="absolute inset-x-0 bottom-0 h-[70vh] opacity-[0.02]"
                 style={{
                     backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
-                    backgroundSize: '40px 40px'
+                    backgroundSize: '60px 60px',
+                    transform: 'rotateX(60deg) scale(2) translateY(20%)',
+                    transformOrigin: 'bottom center',
+                    maskImage: 'linear-gradient(to top, black, transparent 80%)',
+                    WebkitMaskImage: 'linear-gradient(to top, black, transparent 80%)'
                 }}
             />
         </div>

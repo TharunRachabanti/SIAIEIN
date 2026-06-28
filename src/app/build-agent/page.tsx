@@ -23,7 +23,7 @@ export default function BuildAgentPage() {
     const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 0));
 
     return (
-        <div className="flex flex-col min-h-screen w-full relative pt-24 overflow-hidden bg-slate-800">
+        <div className="flex flex-col min-h-screen w-full relative pt-24 overflow-hidden bg-[#130a06]">
             {/* Background elements */}
             <div className="absolute top-0 right-[20%] w-[600px] h-[600px] bg-indigo-600/10 blur-[150px] rounded-full pointer-events-none" />
 
@@ -32,8 +32,8 @@ export default function BuildAgentPage() {
                 {/* Header */}
                 <ScrollReveal delay={0.1}>
                     <div className="text-center mb-16">
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-6">
-                            Architect Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">Custom Agent</span>
+                        <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-6 font-serif">
+                            Architect Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-orange-500">Custom Agent</span>
                         </h1>
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
                             Design the exact autonomous system your business needs. We will review your blueprint and provide a technical architecture.
@@ -52,7 +52,7 @@ export default function BuildAgentPage() {
                     <div className="relative flex justify-between gap-4 md:gap-0 max-w-4xl mx-auto overflow-x-auto pb-4 md:pb-0">
                         {steps.map((step, i) => (
                             <div key={i} className="flex flex-col items-center gap-3 shrink-0">
-                                <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center bg-slate-800 z-10 transition-colors duration-300 ${i <= currentStep ? 'border-indigo-500 text-indigo-400' : 'border-white/10 text-gray-600'
+                                <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center bg-[#130a06] z-10 transition-colors duration-300 ${i <= currentStep ? 'border-indigo-500 text-indigo-400' : 'border-white/10 text-gray-600'
                                     }`}>
                                     <step.icon className="w-5 h-5" />
                                 </div>
@@ -65,7 +65,7 @@ export default function BuildAgentPage() {
                 </div>
 
                 {/* Form Container */}
-                <Card className="bg-slate-800/50 border-white/10 shadow-2xl backdrop-blur-md overflow-hidden min-h-[500px] relative">
+                <Card className="bg-[#130a06]/50 border-white/10 shadow-2xl backdrop-blur-md overflow-hidden min-h-[500px] relative">
                     <CardContent className="p-0 h-full">
                         <AnimatePresence mode="wait">
 
@@ -102,7 +102,7 @@ export default function BuildAgentPage() {
                                     </div>
 
                                     <div className="flex justify-end">
-                                        <Button onClick={nextStep} disabled={!selectedRole} size="lg" className="bg-white text-black hover:bg-gray-200">
+                                        <Button onClick={nextStep} disabled={!selectedRole} variant="glowing" size="lg" className="w-full sm:w-auto">
                                             Next Step <ArrowRight className="w-4 h-4 ml-2" />
                                         </Button>
                                     </div>
@@ -134,7 +134,7 @@ export default function BuildAgentPage() {
                                         <Button onClick={prevStep} variant="ghost" className="text-gray-400 hover:text-white">
                                             <ArrowLeft className="w-4 h-4 mr-2" /> Back
                                         </Button>
-                                        <Button onClick={nextStep} size="lg" className="bg-white text-black hover:bg-gray-200">
+                                        <Button onClick={nextStep} variant="glowing" size="lg" className="w-full sm:w-auto">
                                             Next Step <ArrowRight className="w-4 h-4 ml-2" />
                                         </Button>
                                     </div>
@@ -151,14 +151,14 @@ export default function BuildAgentPage() {
                                     <div className="w-20 h-20 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mb-6 border border-emerald-500/20">
                                         <CheckCircle2 className="w-10 h-10" />
                                     </div>
-                                    <h2 className="text-3xl font-bold text-white mb-4">Blueprint Saved.</h2>
+                                    <h2 className="text-3xl font-bold text-white mb-4 font-serif">Blueprint Saved.</h2>
                                     <p className="text-xl text-gray-400 max-w-lg mb-8">
                                         Our engineers will review your configuration and contact you to discuss the final architecture.
                                     </p>
 
                                     <div className="space-y-4 w-full max-w-sm">
                                         <Input placeholder="Enter your work email" className="h-12 bg-black/50 border-white/10 text-center" />
-                                        <Button size="lg" className="w-full h-14 font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_0_20px_rgba(79,70,229,0.3)]">
+                                        <Button variant="glowing" size="lg" className="w-full sm:w-auto">
                                             Submit Configuration
                                         </Button>
                                     </div>
