@@ -1,4 +1,4 @@
-import { DemoConfig } from "@/components/ui/demo-modal";
+import { DemoConfig } from "@/components/shared/demo-modal";
 
 // ========================================
 // AGENT DEMOS (7)

@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0a0604;
-  /* Deep warm dark background */
+  --color-background: #0a0502;
   --color-foreground: #ffffff;
   --color-primary: #f97316;
   --color-secondary: #fbbf24;
@@ -12,14 +11,39 @@
 
 @layer base {
   html {
-    background-color: var(--color-background);
+    background-color: #0a0502;
     color: var(--color-foreground);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background-color: var(--color-background);
+    background-color: #0a0502;
     color: var(--color-foreground);
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Premium scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0502;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(249, 115, 22, 0.3);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(249, 115, 22, 0.6);
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(249, 115, 22, 0.25);
+    color: #fff;
   }
 }
 
@@ -27,4 +51,17 @@
   .text-balance {
     text-wrap: balance;
   }
-}
+
+  /* Reusable section header pattern */
+  .section-label {
+    @apply text-xs font-bold tracking-[0.2em] text-orange-500 uppercase;
+  }
+
+  /* Universal card surface */
+  .card-surface {
+    @apply bg-white/[0.03] border border-white/[0.08] rounded-2xl transition-all duration-300;
+  }
+  .card-surface:hover {
+    @apply bg-white/[0.05] border-white/[0.15];
+  }
+}

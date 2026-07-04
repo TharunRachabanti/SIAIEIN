@@ -11,7 +11,7 @@ interface CalendlyButtonProps {
 }
 
 export function CalendlyButton({ 
-    url = "https://calendly.com/YOUR_USERNAME/discovery-call", 
+    url = "https://calendly.com/tharunrachabanti/free-ai-audit", 
     text, 
     className 
 }: CalendlyButtonProps) {

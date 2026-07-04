@@ -1,164 +1,169 @@
-import { CalendlyButton } from "@/components/ui/calendly-button";
-import { ArrowRight, Bot, Target, Shield, Users, Compass, Code } from "lucide-react";
+import { CalendlyButton } from "@/components/shared/calendly-button";
+import { Bot, Target, Shield, Users, Compass, Code } from "lucide-react";
 import * as React from "react";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { TrustTicker } from "@/components/ui/trust-ticker";
+import { ScrollReveal } from "@/components/shared/scroll-reveal";
+
+const principles = [
+  { icon: Bot, title: "Automation First", desc: "If a task is repetitive and rule-based, it should be automated. Human time is too valuable to spend on work machines can do." },
+  { icon: Target, title: "Acts, Not Answers", desc: "The future of AI is not conversation. It is execution. Our systems complete work, not just respond to it." },
+  { icon: Users, title: "Amplifying Humans", desc: "We are not replacing human intelligence. We are amplifying it. The future belongs to humans and systems working together." },
+  { icon: Compass, title: "Industry-First", desc: "We don't build generic tools. We build deep, specific solutions that understand how each industry actually works." },
+  { icon: Code, title: "Long-Term Build", desc: "We are not optimizing for the next product launch. We are building infrastructure that will matter 20 years from now." },
+  { icon: Shield, title: "Trustworthy AI", desc: "Every agent we build is transparent, auditable, and designed to escalate to humans when needed." },
+];
+
+const roadmap = [
+  { phase: "Phase 1: 2025 to 2027", title: "Core AI Infrastructure", desc: "Build specialised AI agents for business workflows. Automate the most common repetitive tasks across industries. Establish our AI development framework and delivery model." },
+  { phase: "Phase 2: 2027 to 2030", title: "AI Agent Marketplace", desc: "Launch a marketplace where businesses can hire and deploy AI agents instantly. Integrate with all major business tools. Enable companies to build custom agents on our platform." },
+  { phase: "Phase 3: 2030 to 2033", title: "Autonomous Business Systems", desc: "AI agents begin collaborating with each other. Entire departments operate autonomously. Businesses run with minimal manual intervention." },
+  { phase: "Phase 4: 2033 to 2035+", title: "The Autonomous Economy", desc: "AI agents become a standard part of every business workforce. Millions of companies run operations through intelligent autonomous systems." },
+];
 
 export default function VisionPage() {
-    return (
-        <div className="flex flex-col min-h-screen w-full relative pt-24 overflow-hidden">
-            {/* Background Glows */}
-            <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-indigo-500/10 blur-[150px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[800px] h-[600px] bg-orange-500/10 blur-[150px] rounded-full pointer-events-none" />
+  return (
+    <div className="flex flex-col min-h-screen w-full bg-[#0a0502] pt-24">
 
-            {/* Hero Section */}
-            <ScrollReveal delay={0.1}>
-                <section className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto flex flex-col items-center text-center">
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-8 font-serif">
-                        We Are Building the <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-indigo-400 to-purple-400">Autonomous Economy</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12 text-balance leading-relaxed">
-                        This is not just a company. This is a long-term mission to change how the world works.
-                    </p>
-                </section>
-            </ScrollReveal>
+      {/* ── HERO ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+        <ScrollReveal delay={0.1}>
+          <p className="section-label mb-4">Our Vision</p>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+            We Are Building the{" "}
+            <span className="text-orange-500">Autonomous Economy</span>
+          </h1>
+          <p className="text-stone-400 text-lg max-w-2xl mx-auto text-balance leading-relaxed">
+            This is not just a company. This is a long-term mission to change how the world works.
+          </p>
+        </ScrollReveal>
+      </section>
 
-            <div className="mb-20">
-                <TrustTicker />
+      {/* ── BELIEF & PROBLEM ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          <ScrollReveal delay={0.1}>
+            <div className="card-surface p-8 md:p-10 h-full">
+              <p className="section-label mb-4">Our Belief</p>
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Software Should Perform Work, Not Just Assist With It
+              </h2>
+              <p className="text-stone-400 leading-relaxed mb-5">
+                Just as electricity transformed every industry 100 years ago, Agentic AI will transform business operations in the next decade.
+              </p>
+              <div className="border-l-2 border-orange-500 pl-4">
+                <p className="text-orange-400 font-semibold text-sm">We are building that infrastructure.</p>
+              </div>
             </div>
-
-            {/* Belief & Problem Container */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full border-t border-white/5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                    <ScrollReveal delay={0.1} direction="right">
-                        <div className="p-10 md:p-14 rounded-3xl bg-[#130a06] border border-white/10 hover:border-indigo-500/30 transition-colors shadow-2xl h-full">
-                            <h2 className="text-3xl font-bold text-white mb-6 font-serif">Our Belief</h2>
-                            <p className="text-xl text-gray-300 font-medium mb-6">Software should not just assist humans. Software should perform work.</p>
-                            <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                                Just as electricity transformed every industry 100 years ago, Agentic AI will transform business operations in the next decade. The companies that adopt autonomous systems early will operate 10 times faster than those that don't.
-                            </p>
-                            <p className="text-indigo-400 font-bold text-lg">We are building that infrastructure.</p>
-                        </div>
-                    </ScrollReveal>
-                    <ScrollReveal delay={0.2} direction="left">
-                        <div className="p-10 md:p-14 rounded-3xl bg-[#130a06]/50 border border-white/5 hover:border-orange-500/30 transition-colors shadow-xl h-full">
-                            <h2 className="text-3xl font-bold text-white mb-6 font-serif">The Problem With Today's AI</h2>
-                            <p className="text-xl text-gray-300 font-medium mb-6">Most AI tools are impressive but limited.</p>
-                            <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                                They generate text, answer questions, and summarize documents — but they cannot take action. Businesses still need humans to operate tools, execute tasks, and manage every workflow.
-                            </p>
-                            <p className="text-orange-500 font-bold text-lg">This is the gap we are closing.</p>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
-
-            {/* Rise of Digital Workers */}
-            <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center">
-                <ScrollReveal delay={0.1}>
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-10 font-serif">The Rise of Digital Workers</h2>
-                    <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-10 text-balance font-light">
-                        In the future, every business will have two types of workforce — human employees and AI employees.
-                    </p>
-                    <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-                        AI agents will handle operations, customer interactions, data analysis, research, and logistics. <strong className="text-white">Humans will focus entirely on creativity, strategy, innovation, and leadership.</strong>
-                    </p>
-                    <div className="inline-block px-8 py-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xl font-bold tracking-wide shadow-[0_0_40px_rgba(99,102,241,0.2)]">
-                        This transition is already beginning. We are building the foundation for it.
-                    </div>
-                </ScrollReveal>
-            </section>
-
-            {/* 10-Year Roadmap */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-[#130a06]/50 border-y border-white/5 relative">
-                <div className="max-w-4xl mx-auto">
-                    <ScrollReveal delay={0.1}>
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-20 text-center font-serif">Our 10-Year Roadmap</h2>
-                    </ScrollReveal>
-
-                    <div className="relative border-l-2 border-indigo-500/30 ml-4 md:ml-0 md:border-l-0">
-                        <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-0.5 bg-gradient-to-b from-indigo-500 to-purple-600 transform -translate-x-1/2" />
-
-                        {[
-                            { phase: "Phase 1 — 2025 to 2027", title: "Core AI Infrastructure", desc: "Build specialized AI agents for business workflows. Automate the most common repetitive tasks across industries. Establish our AI development framework and delivery model." },
-                            { phase: "Phase 2 — 2027 to 2030", title: "AI Agent Marketplace", desc: "Launch a marketplace where businesses can hire and deploy AI agents instantly. Integrate with all major business tools. Enable companies to build custom agents on our platform." },
-                            { phase: "Phase 3 — 2030 to 2033", title: "Autonomous Business Systems", desc: "AI agents begin collaborating with each other. Entire departments operate autonomously. Businesses run with minimal manual intervention." },
-                            { phase: "Phase 4 — 2033 to 2035+", title: "The Autonomous Economy", desc: "AI agents become a standard part of every business workforce. Millions of companies run operations through intelligent autonomous systems. Humans are freed to focus entirely on what only humans can do." }
-                        ].map((milestone, i) => (
-                            <div key={i} className={`relative flex items-center mb-16 md:mb-24 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                                <div className="absolute left-[-21px] md:left-1/2 md:transform md:-translate-x-1/2 w-10 h-10 rounded-full bg-[#130a06] border-4 border-indigo-500 z-10 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)]">
-                                    <div className="w-3 h-3 bg-white rounded-full" />
-                                </div>
-                                <div className={`ml-8 md:ml-0 md:w-1/2 ${i % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'} w-full`}>
-                                    <ScrollReveal delay={0.1} direction={i % 2 === 0 ? "right" : "left"}>
-                                        <div className="bg-[#130a06]/40 p-8 rounded-3xl border border-white/5 hover:border-indigo-500/30 hover:bg-[#130a06] hover:-translate-y-1 transition-all duration-300 shadow-xl group">
-                                            <span className="text-indigo-400 font-black text-sm uppercase tracking-widest mb-3 block">{milestone.phase}</span>
-                                            <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-indigo-300 transition-colors">{milestone.title}</h4>
-                                            <p className="text-gray-400 text-lg leading-relaxed">{milestone.desc}</p>
-                                        </div>
-                                    </ScrollReveal>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Principles */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-16 text-center font-serif">Our Principles</h2>
-                </ScrollReveal>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {[
-                        { icon: Bot, title: "Automation First", desc: "If a task is repetitive and rule-based, it should be automated. Human time is too valuable to spend on work machines can do." },
-                        { icon: Target, title: "Acts, Not Answers", desc: "We believe the future of AI is not conversation. It is execution. Our systems complete work, not just respond to it." },
-                        { icon: Users, title: "Amplifying Humans", desc: "We are not replacing human intelligence. We are amplifying it. The future belongs to humans and systems working together." },
-                        { icon: Compass, title: "Industry-First", desc: "We don't build generic tools. We build deep, specific solutions that understand how each industry actually works." },
-                        { icon: Code, title: "Long-Term Build", desc: "We are not optimizing for the next product launch. We are building infrastructure that will matter 20 years from now." }
-                    ].map((principle, i) => (
-                        <ScrollReveal key={i} delay={0.1 * i} direction="up">
-                            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:border-indigo-500/40 transition-all duration-300 h-full group">
-                                <principle.icon className="w-10 h-10 text-indigo-400 mb-6 group-hover:scale-110 transition-transform" />
-                                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-indigo-300 transition-colors">{principle.title}</h3>
-                                <p className="text-gray-400 leading-relaxed">{principle.desc}</p>
-                            </div>
-                        </ScrollReveal>
-                    ))}
-                </div>
-            </section>
-
-            {/* Our Mindset & Invitation */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full text-center border-t border-white/5 mt-10">
-                <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-10 font-serif">Our Mindset</h2>
-                    <p className="text-xl text-gray-300 leading-relaxed mb-6">
-                        We do not follow trends. We study where the world is going and build for that destination before it arrives.
-                    </p>
-                    <p className="text-xl text-gray-400 leading-relaxed mb-16">
-                        When we see a business problem we haven't solved before, we learn it, build a solution, and add it to our capabilities. We operate with the belief that <strong className="text-white">speed, depth of thinking, and genuine problem-solving are the only competitive advantages that last.</strong>
-                    </p>
-                </ScrollReveal>
-
-                <ScrollReveal delay={0.2} direction="up">
-                    <div className="bg-gradient-to-br from-indigo-900/40 to-[#130a06] border border-indigo-500/30 p-10 md:p-16 rounded-3xl shadow-[0_0_50px_rgba(99,102,241,0.15)]">
-                        <h3 className="text-3xl font-bold text-white mb-8 font-serif">An Invitation</h3>
-                        <p className="text-xl text-gray-300 mb-4">We are at the very beginning of an enormous technological shift.</p>
-                        <ul className="text-lg text-gray-400 space-y-4 mb-10">
-                            <li>If you are a business that wants to operate in the future — we want to work with you.</li>
-                            <li>If you are a builder who believes in autonomous systems — we want to build with you.</li>
-                            <li>If you are an investor who sees what is coming — we want to grow with you.</li>
-                        </ul>
-                        <p className="text-2xl font-bold text-indigo-400 mb-10">The autonomous future is being built right now. We intend to build it well.</p>
-                        <CalendlyButton 
-                            text="Join Us — Book a Conversation" 
-                            className="w-full sm:w-auto h-12 text-lg"
-                        />
-                    </div>
-                </ScrollReveal>
-            </section>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
+            <div className="card-surface p-8 md:p-10 h-full">
+              <p className="section-label mb-4">The Problem</p>
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Today's AI Tools Are Impressive But Limited
+              </h2>
+              <p className="text-stone-400 leading-relaxed mb-5">
+                They generate text and answer questions but they cannot take action. Businesses still need humans to execute tasks and manage every workflow.
+              </p>
+              <div className="border-l-2 border-orange-500 pl-4">
+                <p className="text-orange-400 font-semibold text-sm">This is the gap we are closing.</p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
-    );
+      </section>
+
+      {/* ── DIGITAL WORKERS ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+        <div className="max-w-3xl mx-auto text-center">
+          <ScrollReveal delay={0.1}>
+            <p className="section-label mb-4">The Future</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">The Rise of Digital Workers</h2>
+            <p className="text-stone-400 leading-relaxed mb-4 text-balance">
+              In the future, every business will have two types of workforce: human employees and AI employees.
+            </p>
+            <p className="text-stone-400 leading-relaxed mb-8 text-balance">
+              AI agents will handle operations, customer interactions, data analysis, and research.{" "}
+              <strong className="text-white">Humans will focus entirely on creativity, strategy, and leadership.</strong>
+            </p>
+            <div className="inline-block px-6 py-3 rounded-xl bg-orange-500/10 border border-orange-500/25 text-orange-400 font-semibold text-sm">
+              This transition is already beginning. We are building the foundation for it.
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── ROADMAP ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+        <div className="max-w-3xl mx-auto">
+          <ScrollReveal delay={0.1}>
+            <div className="text-center mb-14">
+              <p className="section-label mb-4">Roadmap</p>
+              <h2 className="text-3xl font-bold text-white">Our 10-Year Roadmap</h2>
+            </div>
+          </ScrollReveal>
+
+          <div className="space-y-4">
+            {roadmap.map((milestone, i) => (
+              <ScrollReveal key={i} delay={0.08 * i} direction="up">
+                <div className="card-surface p-7 flex gap-5">
+                  <div className="w-7 h-7 rounded-full bg-orange-500/10 border-2 border-orange-500/40 flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full" />
+                  </div>
+                  <div>
+                    <p className="section-label mb-2">{milestone.phase}</p>
+                    <h4 className="text-base font-bold text-white mb-2">{milestone.title}</h4>
+                    <p className="text-stone-400 text-sm leading-relaxed">{milestone.desc}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRINCIPLES ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal delay={0.1}>
+            <div className="text-center mb-12">
+              <p className="section-label mb-4">Our Principles</p>
+              <h2 className="text-3xl font-bold text-white">What We Stand For</h2>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {principles.map((p, i) => (
+              <ScrollReveal key={i} delay={0.06 * i} direction="up">
+                <div className="card-surface p-6 h-full">
+                  <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4">
+                    <p.icon className="w-5 h-5 text-orange-500" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2">{p.title}</h3>
+                  <p className="text-stone-400 text-sm leading-relaxed">{p.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── INVITATION / CTA ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06] pb-40">
+        <div className="max-w-3xl mx-auto">
+          <ScrollReveal delay={0.1}>
+            <div className="card-surface p-10 md:p-14 text-center">
+              <p className="section-label mb-4">An Invitation</p>
+              <h2 className="text-3xl font-bold text-white mb-6">The Autonomous Future Is Being Built Right Now</h2>
+              <div className="space-y-3 mb-10 text-stone-400 text-sm leading-relaxed">
+                <p>If you are a business that wants to operate in the future, we want to work with you.</p>
+                <p>If you are a builder who believes in autonomous systems, we want to build with you.</p>
+                <p>If you are an investor who sees what is coming, we want to grow with you.</p>
+              </div>
+              <p className="text-orange-400 font-semibold mb-8">We intend to build it well.</p>
+              <CalendlyButton text="Join Us. Book a Conversation." className="" />
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+    </div>
+  );
 }

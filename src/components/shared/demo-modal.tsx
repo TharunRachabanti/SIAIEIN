@@ -176,7 +176,7 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                                 </div>
                                 <div className="flex items-center gap-2 sm:ml-3">
                                     <Terminal className="w-4 h-4 text-gray-400" />
-                                    <span className="text-xs sm:text-sm font-mono text-gray-300 truncate max-w-[200px] sm:max-w-none">{config.title} — Live Demo</span>
+                                    <span className="text-xs sm:text-sm font-mono text-gray-300 truncate max-w-[200px] sm:max-w-none">{config.title}: Live Demo</span>
                                 </div>
                             </div>
                             <button onClick={handleClose} className="p-1 sm:p-1.5 hover:bg-white/10 rounded-lg transition-colors">
@@ -200,7 +200,7 @@ export function DemoModal({ config, isOpen, onClose }: DemoModalProps) {
                         >
                             {/* Initial boot */}
                             <div className="text-gray-600 text-[10px] sm:text-xs mb-3">
-                                SIAIEIN Agent Runtime v2.4.1 — {config.title}
+                                SIAIEIN Agent Runtime v2.4.1: {config.title}
                             </div>
 
                             {completedSteps.map((step, i) => (

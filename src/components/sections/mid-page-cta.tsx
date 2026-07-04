@@ -1,7 +1,7 @@
 "use client";
 
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { CalendlyButton } from "@/components/ui/calendly-button";
+import { ScrollReveal } from "@/components/shared/scroll-reveal";
+import { CalendlyButton } from "@/components/shared/calendly-button";
 import * as React from "react";
 
 export function MidPageCTA() {

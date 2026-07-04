@@ -1,150 +1,148 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Search, ShoppingBag, Rocket, Activity, Landmark, Factory, Store, Users, Scale } from "lucide-react";
+import { ShoppingBag, Rocket, Activity, Landmark, Factory, Store, Users, Scale, ArrowRight } from "lucide-react";
 import * as React from "react";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { Button } from "@/components/ui/button";
+import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import Link from "next/link";
-import { MidPageCTA } from "@/components/ui/mid-page-cta";
+import { CalendlyButton } from "@/components/shared/calendly-button";
+import Image from "next/image";
+
+const industries = [
+  {
+    slug: "ecommerce",
+    title: "E-commerce",
+    icon: ShoppingBag,
+    desc: "Autonomous systems for retail logistics, customer support, and inventory optimization.",
+  },
+  {
+    slug: "saas-technology",
+    title: "SaaS & Technology",
+    icon: Rocket,
+    desc: "Intelligent systems to scale product operations and automate customer success.",
+  },
+  {
+    slug: "healthcare",
+    title: "Healthcare",
+    icon: Activity,
+    desc: "Secure, compliant AI workflows for medical administration and patient care.",
+  },
+  {
+    slug: "finance-accounting",
+    title: "Finance & Accounting",
+    icon: Landmark,
+    desc: "Precision AI for transaction monitoring, reporting, and audit compliance.",
+  },
+  {
+    slug: "manufacturing",
+    title: "Manufacturing",
+    icon: Factory,
+    desc: "Predictive intelligence for supply chains and production lines.",
+  },
+  {
+    slug: "retail",
+    title: "Retail",
+    icon: Store,
+    desc: "Omnichannel automation for modern retail operations and inventory.",
+  },
+  {
+    slug: "hr-recruitment",
+    title: "HR & Recruitment",
+    icon: Users,
+    desc: "Intelligent scaling for human resource pipelines and candidate screening.",
+  },
+  {
+    slug: "legal",
+    title: "Legal",
+    icon: Scale,
+    desc: "Accelerated analysis and document drafting for modern law practices.",
+  },
+];
 
 export default function IndustriesPage() {
-    return (
-        <div className="flex flex-col min-h-screen w-full relative pt-24 overflow-hidden">
-            {/* Background Map */}
-            <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-cyan-600/10 blur-[150px] rounded-full pointer-events-none" />
+  return (
+    <div className="flex flex-col min-h-screen w-full bg-[#0a0502] pt-24">
 
-            {/* Hero Section */}
-            <ScrollReveal delay={0.1}>
-                <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center z-10">
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6 font-serif">
-                        Built for Your <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-500">Industry</span>
-                    </h1>
-                    <p className="text-xl md:text-2xl text-gray-400 max-w-3xl text-balance leading-relaxed">
-                        We don't build generic AI. We build deep solutions for specific industries.
-                    </p>
-                </section>
-            </ScrollReveal>
+      {/* ── HERO ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+        <ScrollReveal delay={0.1}>
+          <p className="section-label mb-4">Industries</p>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
+            Built for Your <span className="text-orange-500">Industry</span>
+          </h1>
+          <p className="text-stone-400 text-lg max-w-2xl mx-auto text-balance leading-relaxed mb-10">
+            We don't build generic AI. Every solution we deliver is designed around the specific rules, compliance, and workflows of your industry.
+          </p>
+          <CalendlyButton text="Discuss Custom Architecture" className="" />
+        </ScrollReveal>
+      </section>
 
-            {/* Industries Grid */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative z-10 border-t border-white/5">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {[
-                        {
-                            id: "ecommerce",
-                            slug: "ecommerce",
-                            title: "E-commerce",
-                            icon: ShoppingBag,
-                            color: "text-orange-500",
-                            bg: "bg-orange-500/10",
-                            border: "hover:border-orange-500/50",
-                            list: ["AI order tracking and support", "Personalized product recommendation agents", "Inventory demand forecasting", "Customer returns automation", "Review analysis and response"]
-                        },
-                        {
-                            id: "saas",
-                            slug: "saas-technology",
-                            title: "SaaS & Technology",
-                            icon: Rocket,
-                            color: "text-orange-500",
-                            bg: "bg-orange-500/10",
-                            border: "hover:border-orange-500/50",
-                            list: ["User onboarding automation", "Customer success and retention agents", "Support ticket resolution", "Churn prediction and response workflows", "Product feedback analysis"]
-                        },
-                        {
-                            id: "healthcare",
-                            slug: "healthcare",
-                            title: "Healthcare",
-                            icon: Activity,
-                            color: "text-rose-400",
-                            bg: "bg-emerald-500/10",
-                            border: "hover:border-emerald-500/50",
-                            list: ["Appointment scheduling agents", "Patient communication automation", "Medical document processing", "Insurance claim pre-processing", "Staff coordination workflows"]
-                        },
-                        {
-                            id: "finance",
-                            slug: "finance-accounting",
-                            title: "Finance & Accounting",
-                            icon: Landmark,
-                            color: "text-orange-500",
-                            bg: "bg-orange-500/10",
-                            border: "hover:border-orange-500/50",
-                            list: ["Transaction monitoring agents", "Fraud detection workflows", "Automated financial reporting", "Expense audit agents", "Regulatory compliance assistance"]
-                        },
-                        {
-                            id: "manufacturing",
-                            slug: "manufacturing",
-                            title: "Manufacturing",
-                            icon: Factory,
-                            color: "text-purple-400",
-                            bg: "bg-purple-500/10",
-                            border: "hover:border-purple-500/50",
-                            list: ["Predictive maintenance AI", "Supply chain monitoring agents", "Production analytics", "Inventory optimization", "Quality control data analysis"]
-                        },
-                        {
-                            id: "retail",
-                            slug: "retail",
-                            title: "Retail",
-                            icon: Store,
-                            color: "text-rose-400",
-                            bg: "bg-rose-500/10",
-                            border: "hover:border-rose-500/50",
-                            list: ["Demand forecasting agents", "Dynamic pricing optimization", "Customer loyalty workflows", "Store operations automation", "Supplier communication agents"]
-                        },
-                        {
-                            id: "hr",
-                            slug: "hr-recruitment",
-                            title: "HR & Recruitment",
-                            icon: Users,
-                            color: "text-indigo-400",
-                            bg: "bg-indigo-500/10",
-                            border: "hover:border-indigo-500/50",
-                            list: ["AI resume screening", "Candidate pipeline management", "Interview scheduling automation", "Employee onboarding workflows", "Policy and query response agents"]
-                        },
-                        {
-                            id: "legal",
-                            slug: "legal",
-                            title: "Legal",
-                            icon: Scale,
-                            color: "text-slate-400",
-                            bg: "bg-slate-500/10",
-                            border: "hover:border-slate-500/50",
-                            list: ["Contract analysis & extraction", "Case law research automation", "Document drafting workflows", "Client onboarding & triage", "Compliance monitoring agents"]
-                        }
-                    ].map((industry, i) => (
-                        <ScrollReveal key={i} delay={0.05 * i} direction="up">
-                            <Card id={industry.id} className={`bg-[#130a06]/40 border-white/5 hover:-translate-y-2 h-full transition-all duration-300 group ${industry.border} hover:bg-[#130a06] shadow-none hover:shadow-2xl scroll-mt-32`}>
-                                <CardContent className="p-8">
-                                    <div className="flex items-center gap-4 mb-8">
-                                        <div className={`p-4 rounded-xl ${industry.bg} border border-[currentcolor]/20 group-hover:scale-110 transition-transform duration-300`}>
-                                            <industry.icon className={`w-8 h-8 ${industry.color}`} />
-                                        </div>
-                                        <h3 className="text-2xl font-bold text-white group-hover:text-gray-200 transition-colors uppercase tracking-tight">{industry.title}</h3>
-                                    </div>
-                                    <div className="mt-8 pt-6 border-t border-white/5">
-                                        <Link href={`/industries/${industry.slug}`} className={`inline-flex items-center gap-2 ${industry.color} font-bold hover:gap-3 transition-all`}>
-                                            Explore Industry Solutions <span className="text-xl">→</span>
-                                        </Link>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </ScrollReveal>
-                    ))}
+      {/* ── ARCHITECTURE VISUAL ── */}
+      <section className="px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full pb-24">
+        <ScrollReveal delay={0.2} direction="up">
+          <div className="relative w-full aspect-[21/9] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_0_100px_rgba(249,115,22,0.1)] bg-[#0e0703]">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0502] via-transparent to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0502]/80 via-transparent to-[#0a0502]/80 z-10" />
+            <Image 
+              src="/images/arch_industries.png" 
+              alt="Industry AI Architecture" 
+              fill 
+              className="object-cover opacity-80"
+            />
+            <div className="absolute bottom-8 left-8 z-20 max-w-sm">
+              <h3 className="text-xl font-bold text-white mb-2">Centralized Intelligence</h3>
+              <p className="text-stone-400 text-sm leading-relaxed">
+                Connect disparate legacy systems through a central, intelligent layer that understands your domain context.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ── INDUSTRIES GRID ── */}
+      <section className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full border-t border-white/[0.06]">
+        <ScrollReveal delay={0.1}>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white">Select Your Domain</h2>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {industries.map((industry, i) => (
+            <ScrollReveal key={industry.slug} delay={0.05 * i} direction="up">
+              <Link href={`/industries/${industry.slug}`} className="block h-full group">
+                <div className="card-surface p-6 h-full flex flex-col transition-all duration-300 hover:border-orange-500/30">
+                  <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <industry.icon className="w-5 h-5 text-orange-500" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">{industry.title}</h3>
+                  <p className="text-stone-400 text-sm leading-relaxed flex-1 mb-6">
+                    {industry.desc}
+                  </p>
+                  
+                  <div className="flex items-center gap-2 text-xs font-semibold text-orange-500 mt-auto uppercase tracking-wider">
+                    View Solutions
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
-            </section>
-
-            <MidPageCTA />
-
-            {/* CTA */}
-            <section className="py-24 px-4 text-center mt-12 bg-gradient-to-t from-cyan-900/20 to-transparent border-t border-white/5 relative z-10">
-                <ScrollReveal delay={0.1}>
-                    <h2 className="text-4xl font-bold text-white mb-8 font-serif">Don't see your industry?</h2>
-                    <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-                        We build custom Agentic architectures for highly specialized domains. Let's discuss your specific operational challenges.
-                    </p>
-                    <Button variant="glowing" size="lg" className="w-full sm:w-auto">
-                        Discuss Custom Architecture
-                    </Button>
-                </ScrollReveal>
-            </section>
+              </Link>
+            </ScrollReveal>
+          ))}
         </div>
-    );
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 text-center border-t border-white/[0.06] mt-10 pb-40">
+        <ScrollReveal delay={0.1}>
+          <div className="max-w-2xl mx-auto">
+            <p className="section-label mb-4">Don't see yours?</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              We build for any industry
+            </h2>
+            <p className="text-stone-400 mb-10 text-balance leading-relaxed">
+              We work with companies in highly specialized domains too. Tell us about your business and we will figure out the right approach together.
+            </p>
+            <CalendlyButton text="Book Free AI Audit" className="" />
+          </div>
+        </ScrollReveal>
+      </section>
+    </div>
+  );
 }

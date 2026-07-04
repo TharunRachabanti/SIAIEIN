@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { CalendlyButton } from "@/components/ui/calendly-button";
+import { CalendlyButton } from "@/components/shared/calendly-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Terminal, BrainCircuit, Activity, CheckCircle2, Play, Search, Link2, Settings, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -59,49 +59,43 @@ export default function PlaygroundPage() {
     };
 
     return (
-        <div className="flex flex-col min-h-screen w-full relative pt-24 overflow-hidden bg-[#130a06]">
-            {/* Background Map */}
-            <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-cyan-600/10 blur-[150px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-orange-600/10 blur-[150px] rounded-full pointer-events-none" />
+        <div className="flex flex-col min-h-screen w-full bg-[#0a0502] pt-24">
 
             {/* Hero Section */}
             <ScrollReveal delay={0.1}>
-                <section className="relative py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-sm font-semibold mb-6">
-                        <Activity className="w-4 h-4" /> Live Interactive Demo
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-6 font-serif">
-                        Agentic AI <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-500">Playground</span>
+                <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col items-center text-center">
+                    <p className="section-label mb-4">Interactive Demo</p>
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-5 leading-tight">
+                        AI Agent <span className="text-orange-500">Playground</span>
                     </h1>
-                    <p className="text-xl text-gray-400 max-w-2xl text-balance leading-relaxed">
-                        Specify a complex business goal and watch our simulated AI autonomous worker plan and execute the workflow.
+                    <p className="text-stone-400 text-lg max-w-xl text-balance leading-relaxed">
+                        Give the agent a goal and watch it plan and execute the workflow step by step.
                     </p>
                 </section>
             </ScrollReveal>
 
             {/* Playground Area */}
-            <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
+            <section className="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full border-t border-white/[0.06]">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full">
 
                     {/* Left Controls - 4 cols */}
-                    <div className="lg:col-span-4 space-y-6">
-                        <Card className="bg-[#130a06]/60 border-white/10 backdrop-blur-md shadow-2xl h-full">
-                            <CardContent className="p-6 md:p-8 space-y-6">
+                    <div className="lg:col-span-4 space-y-5">
+                        <div className="card-surface h-full">
+                            <div className="p-6 md:p-7 space-y-5 h-full flex flex-col">
                                 <div>
-                                    <h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-                                        <Settings className="w-5 h-5 text-orange-500" /> Task Configurator
-                                    </h3>
-                                    <p className="text-sm text-gray-400">Define the parameters for the autonomous agent.</p>
+                                    <p className="section-label mb-2">Configure</p>
+                                    <h3 className="text-lg font-bold text-white mb-1">Task Setup</h3>
+                                    <p className="text-xs text-stone-500">Set the goal for the agent.</p>
                                 </div>
 
                                 <div className="space-y-4">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-gray-300">Select Agent Type</label>
+                                        <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider">Agent Type</label>
                                         <Select disabled={isRunning} defaultValue="sales">
-                                            <SelectTrigger className="bg-black/50 border-white/10 text-white h-12">
-                                                <SelectValue placeholder="Industry" />
+                                            <SelectTrigger className="bg-white/[0.04] border-white/[0.08] text-white h-10 text-sm">
+                                                <SelectValue placeholder="Pick an agent" />
                                             </SelectTrigger>
-                                            <SelectContent className="bg-[#130a06] border-white/10 text-white">
+                                            <SelectContent className="bg-[#0e0703] border-white/[0.08] text-white">
                                                 <SelectItem value="sales">Sales Strategy Agent</SelectItem>
                                                 <SelectItem value="support">Customer Support Agent</SelectItem>
                                                 <SelectItem value="research">Market Research Agent</SelectItem>
@@ -111,19 +105,19 @@ export default function PlaygroundPage() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-gray-300">Target Objective</label>
+                                        <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider">Objective</label>
                                         <Input
                                             disabled={isRunning}
-                                            defaultValue="Analyze leads and generate 50 outreach emails."
-                                            className="bg-black/50 border-white/10 text-white h-12"
+                                            defaultValue="Analyse leads and generate 50 outreach emails."
+                                            className="bg-white/[0.04] border-white/[0.08] text-white h-10 text-sm placeholder:text-stone-600"
                                         />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-gray-300">Integrations Required</label>
+                                        <label className="text-xs font-semibold text-stone-400 uppercase tracking-wider">Integrations</label>
                                         <div className="flex flex-wrap gap-2">
                                             {["Salesforce", "Gmail", "LinkedIn API"].map(tag => (
-                                                <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-md text-xs text-gray-300 flex items-center gap-1">
+                                                <span key={tag} className="px-2.5 py-1 bg-white/[0.04] border border-white/[0.08] rounded-md text-xs text-stone-300 flex items-center gap-1.5">
                                                     <Link2 className="w-3 h-3" /> {tag}
                                                 </span>
                                             ))}
@@ -131,38 +125,39 @@ export default function PlaygroundPage() {
                                     </div>
                                 </div>
 
-                                <div className="pt-6 border-t border-white/10">
+                                <div className="pt-5 border-t border-white/[0.06] mt-auto">
                                     {!isRunning && currentStepIndex === -1 ? (
-                                        <Button onClick={runSimulation} variant="glowing" size="lg" className="w-full sm:w-auto">
-                                            <Play className="w-5 h-5 mr-2" fill="currentColor" /> Deploy Agent
+                                        <Button onClick={runSimulation} variant="glowing" className="w-full">
+                                            <Play className="w-4 h-4 mr-2" fill="currentColor" /> Run Agent
                                         </Button>
                                     ) : (
-                                        <Button onClick={resetSimulation} variant="outline" size="lg" className="w-full h-14 font-bold border-white/20 text-white hover:bg-white/10">
-                                            Reset Terminal
+                                        <Button onClick={resetSimulation} variant="outline" className="w-full">
+                                            Reset
                                         </Button>
                                     )}
                                 </div>
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Right Terminal - 8 cols */}
                     <div className="lg:col-span-8">
-                        <Card className="bg-black border-white/10 shadow-2xl h-[550px] flex flex-col overflow-hidden relative group">
+                        <div className="card-surface h-[520px] flex flex-col overflow-hidden">
                             {/* Terminal Header */}
-                            <div className="h-12 border-b border-white/10 bg-[#130a06]/50 flex items-center px-4 justify-between shrink-0">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                                    <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                                    <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                            <div className="h-10 border-b border-white/[0.06] flex items-center px-4 justify-between shrink-0">
+                                <div className="flex items-center gap-1.5">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-white/[0.1]" />
+                                    <div className="w-2.5 h-2.5 rounded-full bg-white/[0.1]" />
+                                    <div className="w-2.5 h-2.5 rounded-full bg-white/[0.1]" />
                                 </div>
-                                <div className="flex items-center gap-2 text-xs text-gray-500 font-mono">
-                                    <Terminal className="w-4 h-4" /> Agent OS Terminal v2.4.1
+                                <div className="flex items-center gap-2 text-xs text-stone-600 font-mono">
+                                    <Terminal className="w-3.5 h-3.5" /> Agent Terminal v2.4.1
                                 </div>
+                                <div className="w-16" />
                             </div>
 
                             {/* Terminal Body */}
-                            <CardContent className="p-6 font-mono text-sm sm:text-base overflow-y-auto flex-1 custom-scrollbar">
+                            <div className="p-5 font-mono text-sm overflow-y-auto flex-1">
                                 {currentStepIndex === -1 && !isRunning ? (
                                     <div className="h-full flex flex-col items-center justify-center text-gray-600 space-y-4">
                                         <BrainCircuit className="w-16 h-16 opacity-20" />
@@ -186,9 +181,9 @@ export default function PlaygroundPage() {
                                                     >
                                                         <div className="mt-1 shrink-0">
                                                             {completedSteps.includes(idx) ? (
-                                                                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                                                                <CheckCircle2 className="w-4 h-4 text-orange-500" />
                                                             ) : (
-                                                                <Activity className="w-5 h-5 text-orange-500 animate-pulse" />
+                                                                <Activity className="w-4 h-4 text-orange-400 animate-pulse" />
                                                             )}
                                                         </div>
                                                         <div>
@@ -214,23 +209,22 @@ export default function PlaygroundPage() {
                                             <motion.div
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
-                                                className="mt-8 p-4 border border-emerald-500/30 bg-emerald-500/10 rounded-lg flex flex-col gap-4"
+                                                className="mt-6 p-4 border border-orange-500/20 bg-orange-500/5 rounded-xl flex flex-col gap-3"
                                             >
-                                                <div className="text-emerald-400 font-bold">Mission Accomplished. Agent returning to standby mode.</div>
-                                                <div className="text-gray-300 font-sans border-t border-emerald-500/20 pt-4 mt-2">
-                                                    <p className="mb-2 text-sm text-emerald-100/70">This is a simulated preview of how our AI agents execute workflows.</p>
-                                                    <p className="mb-4 text-sm text-emerald-100/70">Book a call to see a live demonstration with your actual business data.</p>
+                                                <div className="text-orange-400 font-bold text-sm">Done. Agent back on standby.</div>
+                                                <div className="text-stone-400 font-sans border-t border-white/[0.06] pt-3 text-xs">
+                                                    <p className="mb-2">This is a simulation. Book a call to see it run on your actual data.</p>
                                                     <CalendlyButton 
-                                                        text="Book Live Demo →"
-                                                        className="w-full sm:w-auto h-12 text-lg"
+                                                        text="Book Live Demo"
+                                                        className="mt-2"
                                                     />
                                                 </div>
                                             </motion.div>
                                         )}
                                     </div>
                                 )}
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

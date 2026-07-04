@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Brain, Eye, Zap, BarChart3, Database, Lock, Shield, Layers, CheckCircle2 } from "lucide-react";
 import * as React from "react";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { ParallaxBackground } from "@/components/ui/parallax-background";
-import { AnimatedText } from "@/components/ui/animated-text";
+import { ScrollReveal } from "@/components/shared/scroll-reveal";
+import { ParallaxBackground } from "@/components/sections/parallax-background";
+import { AnimatedText } from "@/components/shared/animated-text";
 
 export default function PlatformPage() {
     return (
@@ -26,7 +26,7 @@ export default function PlatformPage() {
                             </span>
                         </h1>
                         <p className="text-lg md:text-xl text-gray-400 max-w-3xl mb-10 text-balance mx-auto">
-                            Our platform isn't something you interact with daily—it's the foundation that makes all your agents work together intelligently.
+                            Our platform is not something you interact with daily. It is the foundation that makes all your agents work together intelligently.
                         </p>
                     </div>
                 </ScrollReveal>
@@ -43,7 +43,7 @@ export default function PlatformPage() {
                         {
                             icon: Database,
                             title: "Unified Intelligence Layer",
-                            desc: "All your business data—from website visitors to CRM records to project statuses—flows into one secure system. Agents draw from this shared knowledge, so they always have context."
+                            desc: "All your business data, from website visitors to CRM records to project statuses, flows into one secure system. Agents draw from this shared knowledge, so they always have context."
                         },
                         {
                             icon: Layers,
@@ -53,7 +53,7 @@ export default function PlatformPage() {
                         {
                             icon: Lock,
                             title: "Secure Integrations",
-                            desc: "We connect to your existing tools through official APIs and OAuth—no sketchy screen scraping or security shortcuts. Your IT team can review everything."
+                            desc: "We connect to your existing tools through official APIs and OAuth. No screen scraping, no security shortcuts. Your IT team can review everything."
                         },
                         {
                             icon: BarChart3,
@@ -84,9 +84,9 @@ export default function PlatformPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {[
-                        { step: "Observe", icon: Eye, desc: "Agents continuously monitor your systems—new form submissions, email replies, project updates, social mentions. They're always watching for triggers that need action." },
+                        { step: "Observe", icon: Eye, desc: "Agents continuously monitor your systems: new form submissions, email replies, project updates, social mentions. They are always watching for triggers that need action." },
                         { step: "Understand", icon: Brain, desc: "AI analyzes patterns: 'This lead hasn't been contacted in 4 days.' 'This project is trending toward a late delivery.' Agents spot problems humans miss." },
-                        { step: "Act", icon: Zap, desc: "Based on rules you set, agents take action—send a follow-up email, assign a task, post scheduled content, flag a resource issue. Actions match urgency." },
+                        { step: "Act", icon: Zap, desc: "Based on rules you set, agents take action. Send a follow-up email, assign a task, post scheduled content, flag a resource issue. Actions match urgency." },
                         { step: "Report", icon: BarChart3, desc: "You get clear explanations: 'I sent a follow-up to 12 cold leads today.' 'I posted 3 pieces of content.' No jargon, no confusion." }
                     ].map((item, i) => (
                         <ScrollReveal key={i} delay={0.1 * i} direction="up">

@@ -3,7 +3,7 @@ import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { GlobalBackground } from "@/components/ui/global-background";
+import { GlobalBackground } from "@/components/sections/global-background";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces" });

@@ -1,208 +1,293 @@
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, Zap, Target, Lock, BarChart3, Users, Briefcase, Database } from "lucide-react";
+import { getAgentBySlug, agentsData } from "@/lib/data/agents";
+import {
+    TrendingUp, MessageSquare, Search, Settings, DollarSign, Users, BarChart3,
+} from "lucide-react";
+import { ScrollReveal } from "@/components/shared/scroll-reveal";
+import { AgentDemoButton } from "@/components/shared/agent-demo-button";
+import { CalendlyButton } from "@/components/shared/calendly-button";
+import { ArchDiagram } from "@/components/sections/arch-diagram";
+import NextImage from "next/image";
+import Link from "next/link";
 import * as React from "react";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
-// Mock data based on the site's structure
-const agentsData: Record<string, {
-    label: string;
-    title: string;
-    desc: string;
-    problems: { metric: string; outcome: string; text: string; icon: any }[];
-    steps: { title: string; desc: string }[];
-    features: string[];
-}> = {
-    "operations": {
-        label: "Business Operations Manager",
-        title: "Track Projects & Deadlines Intelligently",
-        desc: "An AI manager that keeps your entire operation running smoothly. It monitors tasks across all your tools and alerts you before things fall behind.",
-        problems: [
-            { metric: "Deadlines", outcome: "Never Missed", text: "Automatically tracks deliverables across Jira, Asana, and Slack.", icon: Target },
-            { metric: "Reporting", outcome: "Zero Manual Work", text: "Compiles weekly cross-platform status reports in seconds.", icon: BarChart3 }
-        ],
-        steps: [
-            { title: "Connect Platforms", desc: "Link your project management and communication tools via secure OAuth." },
-            { title: "Set Thresholds", desc: "Define what constitutes a 'delay' or 'blocker' for your specific workflow." },
-            { title: "Automated Oversight", desc: "The agent actively monitors and gently nudges team members when needed." }
-        ],
-        features: ["Cross-platform synchronization", "Automated status updates", "Blocker identification", "Resource allocation tracking"]
-    },
-    "sales": {
-        label: "Sales Intelligence",
-        title: "Scale Your Sales Without Scaling Your Team",
-        desc: "Never miss a lead again. This agent provides instant qualification, intelligent CRM updating, and automated follow-ups.",
-        problems: [
-            { metric: "Speed to Lead", outcome: "Under 5 Minutes", text: "78% of customers buy from the first responder. We ensure that's you.", icon: Zap },
-            { metric: "CRM Hygiene", outcome: "100% Accurate", text: "Automatically logs emails, calls, and meeting notes into Salesforce or HubSpot.", icon: Lock }
-        ],
-        steps: [
-            { title: "Sync CRM & Email", desc: "Connect your inbound lead sources and outbound communication tools." },
-            { title: "Define Playbooks", desc: "Upload your qualification framework and ideal customer profile (ICP)." },
-            { title: "Instant Engagement", desc: "The agent immediately engages new leads and books meetings on your calendar." }
-        ],
-        features: ["Instant lead qualification", "Automated meeting scheduling", "Sentiment analysis on email replies", "Pipeline forecasting"]
-    },
-    "digital-growth": {
-        label: "Digital Growth Agent",
-        title: "Always-On Marketing Optimization",
-        desc: "Manage your online presence 24/7. This agent analyzes ad spend, monitors social sentiment, and optimizes conversion paths.",
-        problems: [
-            { metric: "Ad Spend", outcome: "Optimized ROI", text: "Automatically pauses underperforming campaigns and scales winners.", icon: BarChart3 },
-            { metric: "Social Response", outcome: "Instant Engagement", text: "Monitors brand mentions and engages with positive sentiment.", icon: Users }
-        ],
-        steps: [
-            { title: "Connect Ad Accounts", desc: "Link Google Ads, Meta Ads, and LinkedIn Campaign Manager." },
-            { title: "Set KPI Targets", desc: "Define your target CAC, ROAS, and weekly budget limits." },
-            { title: "Algorithmic Scaling", desc: "The agent autonomously shifts budget to the highest-performing channels." }
-        ],
-        features: ["Cross-channel budget allocation", "Anomaly detection in traffic", "A/B test monitoring", "Competitor ad tracking"]
-    },
-    "workforce": {
-        label: "Workforce Intelligence",
-        title: "Monitor Team Capacity & Wellness",
-        desc: "Ensure your team isn't burning out while maintaining productivity. This agent balances workloads automatically.",
-        problems: [
-            { metric: "Burnout Risk", outcome: "Proactively Managed", text: "Identifies team members working consistently outside normal hours.", icon: Users },
-            { metric: "Resource Allocation", outcome: "Perfect Balance", text: "Reroutes tasks from overloaded members to those with capacity.", icon: Briefcase }
-        ],
-        steps: [
-            { title: "Integrate Systems", desc: "Connect HRIS, Calendar, and Slack/Teams." },
-            { title: "Set Guidelines", desc: "Establish normal working hours and maximum meeting loads." },
-            { title: "Active Balancing", desc: "The agent recommends meeting-free blocks and task reallocation." }
-        ],
-        features: ["Meeting overload detection", "Capacity forecasting", "Automated 1-on-1 scheduling", "Flight-risk identification"]
-    },
-    "supporting": {
-        label: "Supporting Agents",
-        title: "Expand Your AI Team On-Demand",
-        desc: "Custom agents trained on your specific documentation to handle niche, highly-specific tasks in your organization.",
-        problems: [
-            { metric: "Custom Processes", outcome: "Fully Automated", text: "Handle unique workflows that off-the-shelf software can't support.", icon: Zap },
-            { metric: "Knowledge Silos", outcome: "Instantly Accessible", text: "Turns static documentation into an interactive, reasoning entity.", icon: Database }
-        ],
-        steps: [
-            { title: "Upload Knowledge", desc: "Provide PDFs, wikis, and historical ticket data." },
-            { title: "Define Boundaries", desc: "Set strict guardrails on what the agent can and cannot do." },
-            { title: "Deploy & Refine", desc: "Launch internally, monitor decisions, and refine instructions." }
-        ],
-        features: ["RAG (Retrieval-Augmented Generation)", "Strict access controls", "Custom webhook triggers", "Human-in-the-loop escalation"]
-    }
+const iconMap: Record<string, React.ReactNode> = {
+    TrendingUp:   <TrendingUp   className="w-8 h-8 text-orange-500" />,
+    MessageSquare:<MessageSquare className="w-8 h-8 text-orange-500" />,
+    Search:       <Search       className="w-8 h-8 text-orange-500" />,
+    Settings:     <Settings     className="w-8 h-8 text-orange-500" />,
+    DollarSign:   <DollarSign   className="w-8 h-8 text-orange-500" />,
+    Users:        <Users        className="w-8 h-8 text-orange-500" />,
+    BarChart3:    <BarChart3    className="w-8 h-8 text-orange-500" />,
 };
 
-export async function generateStaticParams() {
-    return Object.keys(agentsData).map((key) => ({
-        agent: key,
-    }));
+const iconSmMap: Record<string, React.ReactNode> = {
+    TrendingUp:   <TrendingUp   className="w-4 h-4 text-orange-500" />,
+    MessageSquare:<MessageSquare className="w-4 h-4 text-orange-500" />,
+    Search:       <Search       className="w-4 h-4 text-orange-500" />,
+    Settings:     <Settings     className="w-4 h-4 text-orange-500" />,
+    DollarSign:   <DollarSign   className="w-4 h-4 text-orange-500" />,
+    Users:        <Users        className="w-4 h-4 text-orange-500" />,
+    BarChart3:    <BarChart3    className="w-4 h-4 text-orange-500" />,
+};
+
+interface PageProps {
+    params: Promise<{ agent: string }>;
 }
 
-export default async function AgentPage({ params }: { params: Promise<{ agent: string }> }) {
-    const resolvedParams = await params;
-    const agentKey = resolvedParams.agent;
+export async function generateStaticParams() {
+    return agentsData.map((a) => ({ agent: a.slug }));
+}
 
-    if (!agentsData[agentKey as keyof typeof agentsData]) {
-        notFound();
-    }
-
-    const data = agentsData[agentKey as keyof typeof agentsData];
+export default async function AgentPage({ params }: PageProps) {
+    const { agent: slug } = await params;
+    const agent = getAgentBySlug(slug);
+    if (!agent) notFound();
 
     return (
-        <div className="flex flex-col min-h-screen w-full relative overflow-hidden pt-24">
-            {/* Glow Backdrop */}
-            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-orange-500/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="flex flex-col min-h-screen w-full bg-[#0a0502] pt-20 md:pt-24">
 
-            {/* Hero Section */}
-            <ScrollReveal delay={0.1}>
-                <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col items-center text-center">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-sm font-semibold mb-6">
-                        <Zap className="h-4 w-4" /> {data.label}
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight font-serif">
-                        {data.title}
-                    </h1>
-                    <p className="text-lg md:text-xl text-gray-400 max-w-3xl mb-10 leading-relaxed text-balance">
-                        {data.desc}
-                    </p>
-                    <div className="flex sm:flex-row flex-col gap-4">
-                        <Button variant="glowing" size="lg" className="w-full sm:w-auto">Start Free Trial</Button>
-                        <Button size="lg" variant="outline" className="w-full sm:w-auto h-12 px-8 hover:bg-white/5 hover:scale-105 transition-all">View Interactive Demo</Button>
-                    </div>
-                </section>
-            </ScrollReveal>
+            {/* ── 1. HERO ── */}
+            <section className="relative min-h-[65vh] flex items-center justify-center py-16 md:py-24 overflow-hidden border-b border-white/[0.06]">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <NextImage
+                        src={agent.heroImage}
+                        alt={agent.title}
+                        fill
+                        className="object-cover opacity-40"
+                        priority
+                    />
+                    {/* Gradients for blending */}
+                    <div className="absolute inset-0 bg-[#0a0502]/40 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0a0502]/80 via-transparent to-[#0a0502] z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0a0502]/80 via-transparent to-[#0a0502]/80 z-10" />
+                </div>
 
-            {/* Problems Solved Section */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 w-full">
-                <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl font-bold text-white mb-12 text-center font-serif">Business Impact</h2>
-                </ScrollReveal>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {data.problems.map((prob, i) => (
-                        <ScrollReveal key={i} delay={0.1 * i} direction="up">
-                            <Card className="bg-[#0a0604]/50 border-white/5 hover:border-orange-500/30 hover:bg-[#0a0604] hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(6,182,212,0.1)] transition-all duration-300 group h-full">
-                                <CardContent className="p-8 flex flex-col items-center text-center h-full">
-                                    <div className="w-16 h-16 rounded-2xl bg-slate-950 border border-white/10 flex items-center justify-center mb-6 group-hover:border-orange-500/50 group-hover:bg-orange-500/10 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300">
-                                        <prob.icon className="h-8 w-8 text-orange-500" />
-                                    </div>
-                                    <h3 className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-2 group-hover:text-orange-500 transition-colors">{prob.metric}</h3>
-                                    <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-cyan-200 transition-all">{prob.outcome}</h4>
-                                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors">{prob.text}</p>
-                                </CardContent>
-                            </Card>
-                        </ScrollReveal>
-                    ))}
+                {/* Content */}
+                <div className="relative z-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center mt-12">
+                    <ScrollReveal delay={0.1}>
+                        <div className="w-16 h-16 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mx-auto mb-6 backdrop-blur-md shadow-[0_0_30px_rgba(249,115,22,0.15)]">
+                            {iconMap[agent.iconName] || <Settings className="w-8 h-8 text-orange-500" />}
+                        </div>
+                        <p className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-4">AI Agent</p>
+                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+                            {agent.title}
+                        </h1>
+                        <p className="text-stone-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-balance">
+                            {agent.shortDescription}
+                        </p>
+                    </ScrollReveal>
                 </div>
             </section>
 
-            {/* How it Works Section */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-                <ScrollReveal delay={0.1}>
-                    <div className="bg-[#0a0604] border border-white/10 rounded-3xl p-8 md:p-16 hover:border-orange-500/20 transition-colors duration-500 shadow-2xl">
-                        <h2 className="text-3xl font-bold text-white mb-16 text-center font-serif">How Deployment Works</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-                            <div className="hidden md:block absolute top-8 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-orange-500/0 via-orange-500/50 to-orange-500/0" />
 
-                            {data.steps.map((step, i) => (
-                                <div key={i} className="relative z-10 flex flex-col items-center text-center group">
-                                    <div className="w-16 h-16 rounded-full bg-slate-950 border-2 border-orange-500 flex items-center justify-center text-orange-500 font-bold text-xl mb-6 shadow-[0_0_20px_rgba(6,182,212,0.2)] group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-slate-950 group-hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300">
-                                        {i + 1}
-                                    </div>
-                                    <h4 className="text-xl font-bold text-white mb-3 group-hover:text-orange-500 transition-colors">{step.title}</h4>
-                                    <p className="text-sm text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">{step.desc}</p>
+            {/* ── 2. WHAT IS THIS? ── */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+                <div className="max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 items-start">
+                        <ScrollReveal delay={0.1}>
+                            <p className="section-label mb-3">What is this?</p>
+                            <h2 className="text-2xl font-bold text-white mb-5 leading-snug">Understanding {agent.title}</h2>
+                            <p className="text-stone-400 leading-relaxed text-[15px]">
+                                {agent.whatIs}
+                            </p>
+                        </ScrollReveal>
+                        <ScrollReveal delay={0.15} direction="up">
+                            <div className="lg:pt-10">
+                                <p className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-4">Core Capabilities</p>
+                                <div className="flex flex-col gap-2">
+                                    {agent.features.map((f, i) => (
+                                        <div key={i} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-white/[0.07] bg-white/[0.03] hover:border-orange-500/25 hover:bg-white/[0.05] transition-all duration-200 group">
+                                            <div className="w-6 h-6 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0 group-hover:bg-orange-500/20 transition-colors">
+                                                <span className="text-[9px] font-black text-orange-500">{String(i + 1).padStart(2, "0")}</span>
+                                            </div>
+                                            <span className="text-stone-300 text-sm font-medium">{f}</span>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                </ScrollReveal>
-            </section>
-
-            {/* Deep Capabilities Grid */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
-                <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl font-bold text-white mb-10 text-center font-serif">Core Capabilities</h2>
-                </ScrollReveal>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {data.features.map((feat, i) => (
-                        <ScrollReveal key={i} delay={0.1 * i} direction="right">
-                            <div className="flex items-start gap-4 p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-orange-500/30 hover:bg-white/10 transition-all duration-300 group">
-                                <CheckCircle2 className="h-6 w-6 text-orange-500 shrink-0 group-hover:scale-110 group-hover:text-orange-500 transition-all duration-300" />
-                                <span className="text-gray-200 font-medium group-hover:text-white transition-colors">{feat}</span>
                             </div>
                         </ScrollReveal>
-                    ))}
+                    </div>
                 </div>
             </section>
 
-            {/* Footer CTA */}
-            <section className="py-24 mt-10 px-4 text-center bg-gradient-to-t from-orange-500/5 to-transparent border-t border-white/5">
+            {/* ── 3. HOW WE BUILD IT ── */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06] bg-white/[0.01]">
+                <div className="max-w-5xl mx-auto">
+                    <ScrollReveal delay={0.1}>
+                        <p className="section-label mb-3 text-center">Our Process</p>
+                        <h2 className="text-2xl font-bold text-white mb-10 text-center">How We Deploy It</h2>
+                    </ScrollReveal>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {agent.howWeHelp.map((step, i) => (
+                            <ScrollReveal key={i} delay={0.07 * i} direction="up">
+                                <div className="card-surface p-6 h-full">
+                                    <div className="text-4xl font-black text-orange-500/20 leading-none mb-4 select-none">
+                                        {String(step.step).padStart(2, "0")}
+                                    </div>
+                                    <h3 className="text-sm font-bold text-white mb-2">{step.title}</h3>
+                                    <p className="text-stone-500 text-xs leading-relaxed">{step.desc}</p>
+                                </div>
+                            </ScrollReveal>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── 4. REAL-WORLD USE CASES ── */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+                <div className="max-w-5xl mx-auto">
+                    <ScrollReveal delay={0.1}>
+                        <p className="section-label mb-3">Real Examples</p>
+                        <h2 className="text-2xl font-bold text-white mb-8">What This Looks Like in Practice</h2>
+                    </ScrollReveal>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {agent.useCases.map((useCase, i) => (
+                            <ScrollReveal key={i} delay={0.08 * i} direction="up">
+                                <div className="card-surface p-6 h-full flex flex-col gap-3">
+                                    <div className="w-7 h-7 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0 text-xs font-black text-orange-500">
+                                        {i + 1}
+                                    </div>
+                                    <p className="text-stone-300 text-sm leading-relaxed">{useCase}</p>
+                                </div>
+                            </ScrollReveal>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── 5. TECHNICAL ARCHITECTURE ── */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06] bg-white/[0.01]">
+                <div className="max-w-5xl mx-auto">
+                    <ScrollReveal delay={0.1}>
+                        <p className="section-label mb-3">How It Works Technically</p>
+                        <h2 className="text-2xl font-bold text-white mb-8">Agent Architecture</h2>
+                        <div className="rounded-2xl border border-white/[0.08] overflow-hidden mb-8">
+                            <div className="bg-[#0e0703]/80 px-4 py-3 border-b border-white/[0.06] flex items-center gap-2">
+                                <div className="flex gap-1.5">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+                                </div>
+                                <span className="text-stone-500 text-xs font-mono ml-2">{agent.slug} — agent-architecture</span>
+                            </div>
+                            <div className="p-4 md:p-8">
+                                <ArchDiagram nodes={agent.architecture} />
+                            </div>
+                        </div>
+                        <div>
+                            <p className="text-xs font-bold tracking-widest text-stone-500 uppercase mb-3">Technology Stack</p>
+                            <div className="flex flex-wrap gap-2">
+                                {agent.techStack.map((tech, i) => (
+                                    <span key={i} className="px-3 py-1.5 bg-white/[0.04] border border-white/[0.08] rounded-full text-stone-300 text-xs font-medium hover:border-orange-500/30 hover:text-white transition-colors cursor-default">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </ScrollReveal>
+                </div>
+            </section>
+
+            {/* ── 6. CASE STUDY ── */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+                <div className="max-w-5xl mx-auto">
+                    <ScrollReveal delay={0.1}>
+                        <p className="section-label mb-3">Real Impact</p>
+                        <h2 className="text-2xl font-bold text-white mb-8">Case Study</h2>
+                        <div className="card-surface overflow-hidden">
+                            <div className="p-6 md:p-8 border-b border-white/[0.06]">
+                                <p className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-2">Context</p>
+                                <p className="text-stone-300 text-sm leading-relaxed">{agent.caseStudy.context}</p>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
+                                <div className="p-6 md:p-8">
+                                    <p className="text-xs font-bold tracking-widest text-stone-500 uppercase mb-3">The Problem</p>
+                                    <p className="text-stone-400 text-sm leading-relaxed">{agent.caseStudy.challenge}</p>
+                                </div>
+                                <div className="p-6 md:p-8">
+                                    <p className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-3">What We Built</p>
+                                    <p className="text-stone-300 text-sm leading-relaxed">{agent.caseStudy.result}</p>
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.06] border-t border-white/[0.06]">
+                                {agent.caseStudy.metrics.map((m, i) => (
+                                    <div key={i} className="p-6 text-center">
+                                        <p className="text-2xl font-black text-orange-500 mb-1">{m.value}</p>
+                                        <p className="text-xs text-stone-500 font-semibold uppercase tracking-wider">{m.label}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </ScrollReveal>
+                </div>
+            </section>
+
+            {/* ── 7. LIVE DEMO ── */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06] bg-white/[0.01]">
+                <div className="max-w-5xl mx-auto">
+                    <ScrollReveal delay={0.1}>
+                        <div className="card-surface p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
+                            <div>
+                                <p className="section-label mb-2">See It Live</p>
+                                <h2 className="text-xl font-bold text-white mb-2">Interactive Demo</h2>
+                                <p className="text-stone-400 text-sm leading-relaxed max-w-sm">
+                                    Watch a real step-by-step simulation of this agent completing an actual business task from start to finish.
+                                </p>
+                            </div>
+                            <div className="shrink-0">
+                                <AgentDemoButton demoId={agent.demoId} />
+                            </div>
+                        </div>
+                    </ScrollReveal>
+                </div>
+            </section>
+
+            {/* ── 8. OTHER AGENTS ── */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-white/[0.06]">
+                <div className="max-w-5xl mx-auto">
+                    <ScrollReveal delay={0.1}>
+                        <p className="section-label mb-3">More Agents</p>
+                        <h2 className="text-xl font-bold text-white mb-6">Other AI Agents We Build</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {agentsData
+                                .filter(a => a.slug !== slug)
+                                .slice(0, 4)
+                                .map((a, i) => (
+                                    <Link key={i} href={`/agents/${a.slug}`}>
+                                        <div className="card-surface p-5 group cursor-pointer">
+                                            <div className="flex items-center gap-3 mb-2">
+                                                <div className="w-7 h-7 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0">
+                                                    {iconSmMap[a.iconName]}
+                                                </div>
+                                                <h3 className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">{a.title}</h3>
+                                            </div>
+                                            <p className="text-stone-500 text-xs leading-relaxed pl-10">{a.shortDescription}</p>
+                                        </div>
+                                    </Link>
+                                ))}
+                        </div>
+                    </ScrollReveal>
+                </div>
+            </section>
+
+            {/* ── 9. CTA ── */}
+            <section className="py-20 px-4 sm:px-6 lg:px-8 text-center border-t border-white/[0.06] pb-40">
                 <ScrollReveal delay={0.1}>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-serif">Hire your {data.label.toLowerCase()} today.</h2>
-                    <p className="text-gray-400 mb-8 max-w-xl mx-auto">Requires zero coding experience. Connects to your existing tools in minutes.</p>
-                    <Button variant="glowing" size="lg" className="w-full sm:w-auto">Deploy Agent</Button>
+                    <div className="max-w-xl mx-auto">
+                        <p className="section-label mb-4">Get Started</p>
+                        <h2 className="text-3xl font-bold text-white mb-4">
+                            Want this agent working in your business?
+                        </h2>
+                        <p className="text-stone-400 mb-8 text-balance leading-relaxed">
+                            Book a free audit and we will show you exactly how we would deploy this for your specific workflows.
+                        </p>
+                        <CalendlyButton text="Book Free AI Audit" className="" />
+                    </div>
                 </ScrollReveal>
             </section>
+
         </div>
     );
 }
