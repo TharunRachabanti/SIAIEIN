@@ -4,57 +4,31 @@ import { CalendlyButton } from "@/components/shared/calendly-button";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { 
   Database, UserCheck, ShieldCheck, Zap, Smartphone,
-  BellRing, Mail, Calendar, Webhook,
+  BellRing, Mail, Calendar, Webhook, Users, Play,
   BrainCircuit, Crosshair, PenTool, Sparkles, CheckSquare, Lock,
   LineChart, Activity, Bell, Server, Filter, PlayCircle, Workflow
 } from "lucide-react";
 import * as React from "react";
 import Image from "next/image";
 
-const demoImages = [
-  "/images/crm-demo/1.png",
-  "/images/crm-demo/2.png",
-  "/images/crm-demo/3.png",
-  "/images/crm-demo/4.png",
-  "/images/crm-demo/5.png",
-  "/images/crm-demo/6.png",
-  "/images/crm-demo/7.png",
-  "/images/crm-demo/8.png",
-  "/images/crm-demo/9.png",
-  "/images/crm-demo/11.png",
-  "/images/crm-demo/12.png",
+const roleBasedAccess = [
+  { icon: ShieldCheck, title: "Super Admin", desc: "Complete backend control. Monitor analytics, configure LLM models, edit n8n workflow JSONs directly from the frontend, query the database, and manage AI prompts natively." },
+  { icon: UserCheck, title: "Admin (Sales Manager)", desc: "Manage the entire team. View all leads and reps, add new sales representatives, check team analytics, manually trigger the AI pipeline, and run lead tasks as needed." },
+  { icon: Users, title: "Sales Representative", desc: "Focused execution. Reps only see the specific AI-generated tasks assigned to them for their leads, ensuring zero distractions and maximum output." },
 ];
 
-const coreCapabilities = [
-  { icon: Database, title: "Centralized Lead Management", desc: "Add, edit, and organize leads with comprehensive data tracking (contact details, source, industry, and interaction history)." },
-  { icon: UserCheck, title: "Smart Duplicate Detection", desc: "Prevents data clutter by automatically detecting existing leads based on email or phone numbers." },
-  { icon: ShieldCheck, title: "Role-Based Access Control", desc: "Distinct roles for Super Admins, Managers, and Sales Reps to ensure data security and focused workflows." },
-  { icon: Zap, title: "Modern, Lightning-Fast UI", desc: "Built with Next.js and a custom high-performance design system for a buttery-smooth user experience." },
-  { icon: Smartphone, title: "Omnichannel Support", desc: "Natively supports Email, WhatsApp, and Phone Call tracking." },
+const aiPipeline = [
+  { icon: Smartphone, title: "Instant Acknowledgment", desc: "When a new lead is created (e.g., Referral), the system immediately sends a welcome message via WhatsApp and notifies the business owner in Slack." },
+  { icon: Play, title: "Animated Pipeline Execution", desc: "Trigger the AI pipeline and watch the backend process in real-time. The system analyzes the lead, assigns a score, and generates customized tasks." },
+  { icon: BellRing, title: "Hot Lead Alerts", desc: "If the AI scores a lead as 'Hot', a high-priority Slack notification and an email are instantly dispatched to the business owner." },
 ];
 
-const advancedAutomation = [
-  { icon: BellRing, title: "Real-Time Slack Alerts", desc: "Instant team notifications for New Leads, Warm Leads, Outreach Sent, and Completed Tasks." },
-  { icon: Mail, title: "Automated Welcome Sequences", desc: "Instantly triggers welcome emails and WhatsApp messages the moment a new lead enters the system." },
-  { icon: Calendar, title: "Google Calendar Integration", desc: "Automatically schedules meetings and sends calendar invites when a lead is ready to talk." },
-  { icon: Webhook, title: "Third-Party Webhooks", desc: "Deep integration capabilities to connect the CRM with any other tool in your marketing stack." },
-];
-
-const nextGenAIFeatures = [
-  { icon: BrainCircuit, title: "AI Lead Scoring & Prediction", desc: "The AI Engine automatically analyzes lead data (source, industry, interactions) to assign a \"Warmth Score\" and categorize them as Warm or Cold." },
-  { icon: Crosshair, title: "Predictive \"Next Best Action\"", desc: "The AI tells your sales reps exactly what to do next for every single lead (e.g., \"Send Case Study\", \"Follow up via WhatsApp\")." },
-  { icon: PenTool, title: "Hyper-Personalized Outreach Drafting", desc: "The AI drafts personalized Emails and WhatsApp messages using the entire historical context of previous conversations across all channels." },
-  { icon: Sparkles, title: "Automated Intent Analysis", desc: "When a lead replies, the AI reads the response, understands the intent (e.g., \"Interested\", \"Not now\", \"Schedule Call\"), and automatically updates the lead's status and next action." },
-  { icon: CheckSquare, title: "Autonomous Task Generation", desc: "AI automatically creates daily to-do lists for sales reps based on lead interactions." },
-  { icon: Lock, title: "Local, Privacy-First AI", desc: "Powered by an Ollama AI Engine, ensuring all lead data stays private and secure without relying entirely on expensive third-party APIs." },
-];
-
-const analyticsManagement = [
-  { icon: LineChart, title: "Real-Time Insights Dashboard", desc: "Visual charts tracking Lead Conversion Rates, Pipeline Value, Source Distribution, and Sales Team Performance." },
-  { icon: Activity, title: "Sales Team Tracking", desc: "Monitor the activity, conversion rates, and active tasks of individual sales representatives." },
-  { icon: Bell, title: "In-App Notification Center", desc: "A dynamic notification bell that tracks all system activities in real-time (e.g., \"Lead AI Scored\", \"Email Sent\", \"Task Completed\")." },
-  { icon: Server, title: "Super Admin Control Center", desc: "Embedded audit logs, database monitoring, and direct n8n workflow monitoring right inside the CRM." },
-  { icon: Filter, title: "Custom Saved Filters", desc: "Allows users to create and save complex lead filters for quick access to specific lead segments." },
+const leadDetailFeatures = [
+  { icon: CheckSquare, title: "Autonomous AI Tasks", desc: "The LLM generates specific tasks (e.g., Generate WhatsApp message -> Review & Send). Once all tasks are complete, regenerate the pipeline for intelligent follow-ups." },
+  { icon: Sparkles, title: "Context-Aware Replies", desc: "Paste lead replies (or connect email directly). The AI analyzes intent, checks interaction history, and automatically schedules calls or drafts contextual responses." },
+  { icon: Activity, title: "Activities & Notes", desc: "Track every single interaction. Use the Notes tab to collaborate with your team and mention specific users." },
+  { icon: Mail, title: "Email & WhatsApp Log", desc: "A comprehensive, filterable historical log of every single email and WhatsApp message sent to a particular lead." },
+  { icon: Database, title: "Advanced Lead Management", desc: "Rearrange views, import lead data seamlessly via CSV, manually schedule calls, and send custom emails on the fly." }
 ];
 
 export default function CRMProductPage() {
@@ -67,10 +41,10 @@ export default function CRMProductPage() {
           <p className="section-label mb-4">SIAIEIN CRM</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
             The AI-Powered <br />
-            <span className="text-orange-500">Sales Ecosystem</span>
+            <span className="text-orange-500">Lead Management System</span>
           </h1>
           <p className="text-stone-400 text-lg md:text-xl max-w-2xl mx-auto text-balance leading-relaxed mb-10 font-medium">
-            Imagination + AI = Innovation
+            A specialized SaaS product built for lead managers and sales teams. We eliminate manual bottlenecks by automating the entire lead management lifecycle.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <CalendlyButton text="Book Live Demo" className="" />
@@ -82,14 +56,13 @@ export default function CRMProductPage() {
           <div className="relative w-full max-w-4xl mx-auto aspect-video bg-[#0e0603] border border-white/[0.08] rounded-2xl shadow-[0_0_80px_rgba(249,115,22,0.12)] overflow-hidden flex flex-col mt-14 group">
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0502] via-transparent to-[#0a0502]/40 z-10 pointer-events-none" />
             
-            {/* Placeholder for YouTube Embed - Add actual src URL here when ready */}
-            <div className="w-full h-full bg-[#111] flex items-center justify-center relative z-20">
-              {/* Replace this div with an actual iframe when the YouTube URL is available */}
-              <div className="flex flex-col items-center gap-4 text-stone-500">
-                 <PlayCircle className="w-16 h-16 text-orange-500/80" />
-                 <p className="font-medium text-sm tracking-widest uppercase">YouTube Demo Video</p>
-                 <p className="text-xs max-w-xs text-center opacity-60">Replace this placeholder with the YouTube iframe embed code.</p>
-              </div>
+            <div className="w-full h-full bg-[#111] relative z-20">
+              <iframe 
+                src="https://drive.google.com/file/d/17Hh9YJ5cr8oQA9kZy6Uf7OuYdchd9Ilo/preview" 
+                className="w-full h-full rounded-2xl border-0"
+                allow="autoplay"
+                allowFullScreen
+              ></iframe>
             </div>
             
           </div>
@@ -100,35 +73,35 @@ export default function CRMProductPage() {
       {/* FEATURE SECTIONS */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 space-y-20 md:space-y-32">
         
-        {/* 1. Next-Gen AI Features (Highlighting the "Magic" first) */}
+        {/* 1. Role-Based Architecture */}
         <section>
           <ScrollReveal>
             <div className="flex items-center gap-4 mb-12">
                <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
-                 <Sparkles className="w-6 h-6 text-orange-500" />
+                 <ShieldCheck className="w-6 h-6 text-orange-500" />
                </div>
                <div>
-                 <h2 className="text-3xl font-bold text-white">Next-Gen AI Features</h2>
-                 <p className="text-stone-400 mt-1">The "Magic" behind the ecosystem.</p>
+                 <h2 className="text-3xl font-bold text-white">Three-Tier Architecture</h2>
+                 <p className="text-stone-400 mt-1">Built specifically for hierarchical sales teams.</p>
                </div>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {nextGenAIFeatures.map((feature, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {roleBasedAccess.map((role, i) => (
               <ScrollReveal key={i} delay={0.1 * i} direction="up">
                 <div className="h-full bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.04] transition-colors group">
                   <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                    <feature.icon className="w-5 h-5 text-orange-500" />
+                    <role.icon className="w-5 h-5 text-orange-500" />
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                  <p className="text-stone-400 text-sm leading-relaxed">{feature.desc}</p>
+                  <h3 className="text-lg font-bold text-white mb-2">{role.title}</h3>
+                  <p className="text-stone-400 text-sm leading-relaxed">{role.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
           </div>
         </section>
 
-        {/* 2. Advanced Automation */}
+        {/* 2. The AI Pipeline Flow */}
         <section>
           <ScrollReveal>
             <div className="flex items-center gap-4 mb-12">
@@ -136,21 +109,24 @@ export default function CRMProductPage() {
                  <Workflow className="w-6 h-6 text-orange-500" />
                </div>
                <div>
-                 <h2 className="text-3xl font-bold text-white">Advanced Automation</h2>
-                 <p className="text-stone-400 mt-1">Powered by n8n.</p>
+                 <h2 className="text-3xl font-bold text-white">The Lead AI Pipeline</h2>
+                 <p className="text-stone-400 mt-1">From creation to conversion, entirely automated.</p>
                </div>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {advancedAutomation.map((feature, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {aiPipeline.map((step, i) => (
               <ScrollReveal key={i} delay={0.1 * i} direction="up">
-                <div className="flex gap-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.04] transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center shrink-0">
-                    <feature.icon className="w-6 h-6 text-orange-500" />
+                <div className="flex flex-col gap-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.04] transition-colors h-full relative overflow-hidden">
+                  <div className="absolute top-0 right-0 -mr-4 -mt-4 text-9xl font-black text-white/[0.02] pointer-events-none select-none">
+                    0{i+1}
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                    <p className="text-stone-400 text-sm leading-relaxed">{feature.desc}</p>
+                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center shrink-0 relative z-10">
+                    <step.icon className="w-6 h-6 text-orange-500" />
+                  </div>
+                  <div className="relative z-10">
+                    <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
+                    <p className="text-stone-400 text-sm leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -158,87 +134,28 @@ export default function CRMProductPage() {
           </div>
         </section>
 
-        {/* 3. Core Capabilities */}
+        {/* 3. Lead Detail Page & Tasks */}
         <section>
           <ScrollReveal>
             <div className="flex items-center gap-4 mb-12">
                <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
-                 <Database className="w-6 h-6 text-orange-500" />
+                 <Sparkles className="w-6 h-6 text-orange-500" />
                </div>
                <div>
-                 <h2 className="text-3xl font-bold text-white">Core Capabilities</h2>
-                 <p className="text-stone-400 mt-1">The solid foundation of your CRM.</p>
+                 <h2 className="text-3xl font-bold text-white">Inside the Lead View</h2>
+                 <p className="text-stone-400 mt-1">Contextual tabs and autonomous LLM task execution.</p>
                </div>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coreCapabilities.map((feature, i) => (
-              <ScrollReveal key={i} delay={0.1 * i} direction="up">
+            {leadDetailFeatures.map((feature, i) => (
+              <ScrollReveal key={i} delay={0.1 * (i % 3)} direction="up">
                 <div className="h-full bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.04] transition-colors group">
                   <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                     <feature.icon className="w-5 h-5 text-orange-500" />
                   </div>
                   <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
                   <p className="text-stone-400 text-sm leading-relaxed">{feature.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </section>
-
-        {/* 4. Analytics & Management */}
-        <section>
-          <ScrollReveal>
-            <div className="flex items-center gap-4 mb-12">
-               <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
-                 <LineChart className="w-6 h-6 text-orange-500" />
-               </div>
-               <div>
-                 <h2 className="text-3xl font-bold text-white">Analytics & Management</h2>
-                 <p className="text-stone-400 mt-1">Total visibility and control.</p>
-               </div>
-            </div>
-          </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {analyticsManagement.map((feature, i) => (
-              <ScrollReveal key={i} delay={0.1 * i} direction="up">
-                <div className="h-full bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.04] transition-colors group">
-                  <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                    <feature.icon className="w-5 h-5 text-orange-500" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-                  <p className="text-stone-400 text-sm leading-relaxed">{feature.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </section>
-
-        {/* 5. Platform Preview Gallery */}
-        <section>
-          <ScrollReveal>
-            <div className="flex items-center gap-4 mb-12">
-               <div className="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
-                 <PlayCircle className="w-6 h-6 text-orange-500" />
-               </div>
-               <div>
-                 <h2 className="text-3xl font-bold text-white">Inside the Ecosystem</h2>
-                 <p className="text-stone-400 mt-1">Real previews of the SIAIEIN CRM interface.</p>
-               </div>
-            </div>
-          </ScrollReveal>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {demoImages.map((src, i) => (
-              <ScrollReveal key={i} delay={0.05 * (i % 4)} direction="up">
-                <div className="relative w-full aspect-[16/9] bg-[#0a0502] border border-white/[0.08] rounded-2xl overflow-hidden group hover:border-white/[0.2] transition-colors shadow-2xl">
-                  <Image
-                    src={src}
-                    alt={`CRM Interface Preview ${i + 1}`}
-                    fill
-                    className="object-contain p-2"
-                    unoptimized
-                  />
                 </div>
               </ScrollReveal>
             ))}

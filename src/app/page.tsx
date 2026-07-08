@@ -30,7 +30,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen w-full bg-[#0a0502]">
 
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center pt-16 pb-16 md:pt-24 md:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative flex flex-col items-center justify-center text-center pt-32 pb-20 md:min-h-screen md:pt-24 md:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <HeroBackground />
 
         <div className="max-w-4xl mx-auto relative z-10 flex flex-col items-center">

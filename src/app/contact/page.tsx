@@ -8,7 +8,6 @@ import * as React from "react";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { submitContactForm } from "@/app/actions/contact";
 import { CalendlyButton } from "@/components/shared/calendly-button";
 
 const nextSteps = [
@@ -27,12 +26,21 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setErrorMsg("");
     const formData = new FormData(e.currentTarget);
+    
+    // IMPORTANT: Replace this with your free access key from web3forms.com
+    formData.append("access_key", "f685c0cb-e8fe-453b-90af-d96d350757ea");
+
     try {
-      const res = await submitContactForm(formData);
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      const res = await response.json();
+      
       if (res.success) {
         setSuccess(true);
       } else {
-        setErrorMsg(res.error || "Something went wrong. Please try again or email us at hello@siaiein.com");
+        setErrorMsg(res.message || "Something went wrong. Please try again or email us at hello@siaiein.com");
       }
     } catch {
       setErrorMsg("Something went wrong. Please try again or email us at hello@siaiein.com");

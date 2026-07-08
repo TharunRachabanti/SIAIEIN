@@ -12,13 +12,12 @@ export function HeroBackground() {
 
       {/* ── AURORA BLOB 1: Large warm orange — top left ── */}
       <motion.div
-        className="absolute"
+        className="absolute top-[-5%] md:top-[-30%]"
         style={{
           width: "80vw",
           height: "80vw",
           maxWidth: 900,
           maxHeight: 900,
-          top: "-30%",
           left: "-15%",
           borderRadius: "40% 60% 70% 30% / 40% 50% 60% 50%",
           background:
@@ -40,13 +39,12 @@ export function HeroBackground() {
 
       {/* ── AURORA BLOB 2: Deep amber — top right ── */}
       <motion.div
-        className="absolute"
+        className="absolute top-[5%] md:top-[-25%]"
         style={{
           width: "70vw",
           height: "70vw",
           maxWidth: 800,
           maxHeight: 800,
-          top: "-25%",
           right: "-20%",
           borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
           background:
@@ -68,13 +66,12 @@ export function HeroBackground() {
 
       {/* ── AURORA BLOB 3: Crimson/deep red — center ── */}
       <motion.div
-        className="absolute left-1/2 -translate-x-1/2"
+        className="absolute left-1/2 -translate-x-1/2 top-[10%] md:top-[-10%]"
         style={{
           width: "60vw",
           height: "60vw",
           maxWidth: 700,
           maxHeight: 700,
-          top: "-10%",
           borderRadius: "50% 50% 40% 60% / 40% 60% 40% 60%",
           background:
             "radial-gradient(ellipse at 40% 40%, rgba(220,70,0,0.18) 0%, rgba(249,115,22,0.08) 45%, transparent 70%)",
